@@ -17,7 +17,7 @@ function Singin() {
         <KeyBoardView>
             <Header />
             <Container>
-                <Title>Apply & Grow</Title>
+                <Title>GYM APP</Title>
                 <Input 
                     placeholderTextColor="#fff"
                     placeholder="E-mail"

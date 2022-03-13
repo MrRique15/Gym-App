@@ -1,7 +1,7 @@
 import React from 'react';
 import { Image } from 'react-native';
 import { Container } from './styles';
-import Logo from '../../assets/logo.png';
+import Logo from '../../assets/images/logo.png';
 
 function Header() {
     return(
