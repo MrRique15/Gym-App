@@ -4,7 +4,7 @@ export const KeyBoardView = styled.KeyboardAvoidingView`
     flex: 1;
     align-items: center;
     justify-content: center;
-    background-color: #000;
+    background-color: rgb(90, 88, 212); //alterando a cor do fundo da página inteira
 `
 export const Container = styled.View`
     flex: 1;
@@ -20,11 +20,11 @@ export const Title = styled.Text`
     font-weight: 700;
     margin-bottom: 30px;
     font-style: italic;
-    text-decoration-line: underline;
+    padding-top: 15px;
 `
 
 export const Input = styled.TextInput`
-    border: 2px solid #12E6C8;
+    border: 2px solid rgb(90, 69, 161);
     margin-bottom: 30px;
     padding: 15px 20px;
     color: #fff;
@@ -34,10 +34,10 @@ export const Input = styled.TextInput`
 `
 
 export const ButtonSubmit = styled.TouchableOpacity`
-    background-color: #1A67F2;
+    background-color: rgb(90, 69, 161)
     border-radius: 9px;
-    width: 90%;
-    padding: 15px;
+    width: 50%;
+    padding: 10px;
     align-items: center;
     margin-bottom: 30px;
 `
@@ -45,7 +45,7 @@ export const ButtonSubmit = styled.TouchableOpacity`
 export const ButtonCreateAccount = styled.TouchableOpacity`
     background-color: #879EE9;
     border-radius: 9px;
-    width: 57%;
+    width: 50%;
     padding: 8px;
     align-items: center;
 `

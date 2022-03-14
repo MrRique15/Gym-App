@@ -5,7 +5,7 @@ import Singin from './pages/Signin';
 export default function App() {
   return (
     <>
-      <Singin />
+      <Singin/>
       <StatusBar style="light" />
     </>
   );

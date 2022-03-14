@@ -4,3 +4,5 @@ export const Container = styled.View`
     padding: 50px;
     flex: 1;
 `
+
+

@@ -8,6 +8,10 @@ function Header() {
         <Container>
             <Image 
                 source={Logo}
+                style={{resizeMode: "contain", //para a imagem ficar inteira
+                        height: 200,
+                        width: 100     
+            }}
             />
         </Container>
     )
