@@ -1,18 +1,21 @@
-import { StatusBar } from 'expo-status-bar';
 import * as React from 'react';
-import Signin from './pages/Signin';
-import Cadastro from './pages/Cadastro';
+import Signin from './pages/Signin/index';
+import Cadastro from './pages/Cadastro/index';
 
-//Navigation import
 import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-export default function App() {
+const Stack = createNativeStackNavigator();
+
+const App = () => {
   return (
     <NavigationContainer>
-      <>
-      <Signin/>
-      <StatusBar style="light" />
-      </>
+      <Stack.Navigator>
+        <Stack.Screen name="Signin" component={Signin} options={{headerShown: false}}/>
+        <Stack.Screen name="Cadastro" component={Cadastro} options={{headerShown: false}}/>
+      </Stack.Navigator>
     </NavigationContainer>
   );
-}
+};
+
+export default App;

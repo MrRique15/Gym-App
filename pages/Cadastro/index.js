@@ -5,38 +5,49 @@ import {
     Container, 
     Input, 
     ButtonSubmit, 
-    ButtonCreateAccount,
     TextSubmit,
-    TextCreateAccount,
-    NormalText
 } from './styles';
-import Header from '../../components/Header';
 
 function Singin() {
     return (
         <KeyBoardView>
-            <Header />
             <Container>
                 <Title>Cadastro</Title>
+                <Input 
+                    placeholderTextColor="#fff"
+                    placeholder="E-mail"
+                />
+                
+                <Input 
+                    placeholderTextColor="#fff"
+                    placeholder="Senha"
+                    secureTextEntry
+                />
                 <Input 
                     placeholderTextColor="#fff"
                     placeholder="Nome"
                 />
                 <Input 
                     placeholderTextColor="#fff"
-                    placeholder="E-mail"
+                    placeholder="Idade"
                 />
                 <Input 
                     placeholderTextColor="#fff"
-                    placeholder="Senha"
-                    secureTextEntry
+                    placeholder="Peso"
+                />
+                <Input 
+                    placeholderTextColor="#fff"
+                    placeholder="Altura"
+                />
+                <Input 
+                    placeholderTextColor="#fff"
+                    placeholder="Tipo físico"
                 />
                 <ButtonSubmit>
                     <TextSubmit>Cadastrar</TextSubmit>
                 </ButtonSubmit>
             </Container>
         </KeyBoardView>
-        
     )
 }
 

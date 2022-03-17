@@ -12,7 +12,7 @@ import {
 } from './styles';
 import Header from '../../components/Header';
 
-function Singin() {
+function Singin({navigation}) {
     return (
         <KeyBoardView>
             <Header />
@@ -31,12 +31,11 @@ function Singin() {
                     <TextSubmit>Entrar</TextSubmit>
                 </ButtonSubmit>
                 <NormalText>Ainda não possui uma conta?</NormalText>
-                <ButtonCreateAccount>
+                <ButtonCreateAccount onPress ={()=> navigation.navigate('Cadastro')}>
                     <TextCreateAccount>Cadastre-se</TextCreateAccount>
                 </ButtonCreateAccount>
             </Container>
         </KeyBoardView>
-        
     )
 }
 
