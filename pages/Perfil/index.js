@@ -8,7 +8,7 @@ import {
     TextSubmit,
 } from './styles';
 
-function Singin() {
+function Perfil() {
     return (
         <KeyBoardView>
             <Container>
@@ -51,4 +51,4 @@ function Singin() {
     )
 }
 
-export default Singin;
+export default Perfil;

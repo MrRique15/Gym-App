@@ -9,7 +9,7 @@ import {
     Text
 } from './styles';
 
-function Singin() {
+function Cadastro({navigation}) {
     return (
         <KeyBoardView>
             <Container>
@@ -21,24 +21,29 @@ function Singin() {
                 />
                 <Input 
                     placeholderTextColor="#fff"
-                    placeholder="Sobrenome"
+                    placeholder="Idade"
                     secureTextEntry
                 />
                 <Input 
                     placeholderTextColor="#fff"
-                    placeholder="E-mail"
+                    placeholder="Tipo físico"
                 />               
                 <Input 
                     placeholderTextColor="#fff"
-                    placeholder="Senha"
+                    placeholder="Doenças crônicas"
                     secureTextEntry
                 />
                 <Input 
                     placeholderTextColor="#fff"
-                    placeholder="Confirmar senha"
+                    placeholder="Peso"
                     secureTextEntry
                 />
-                <ButtonSubmit>
+                <Input 
+                    placeholderTextColor="#fff"
+                    placeholder="Altura"
+                    secureTextEntry
+                />
+                <ButtonSubmit onPress ={()=> navigation.navigate('CadastroConcluido')}>
                     <TextSubmit>Cadastrar</TextSubmit>
                 </ButtonSubmit>
                 <Text>Ao cadastrar você concorda com os termos de serviço e políticas de privacidade</Text>
@@ -47,4 +52,4 @@ function Singin() {
     )
 }
 
-export default Singin;
+export default Cadastro;
