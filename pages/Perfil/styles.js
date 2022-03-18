@@ -10,7 +10,6 @@ export const Container = styled.View`
     flex: 1;
     justify-content: center;
     align-items: center;
-    padding-bottom: 50%;
     width: 90%;
 `
 
@@ -18,8 +17,10 @@ export const Title = styled.Text`
     color: #fff;
     font-size: 26px;
     font-weight: 700;
-    margin-bottom: 10px;
+    margin-bottom: 30px;
+    font-style: italic;
     padding-top: 15px;
+    padding-bottom: 10%;
 `
 
 export const Input = styled.TextInput`
@@ -38,7 +39,7 @@ export const ButtonSubmit = styled.TouchableOpacity`
     width: 50%;
     padding: 10px;
     align-items: center;
-    margin-bottom: 10px;
+    margin-bottom: 30px;
 `
 
 export const ButtonCreateAccount = styled.TouchableOpacity`
@@ -51,7 +52,7 @@ export const ButtonCreateAccount = styled.TouchableOpacity`
 
 export const TextSubmit = styled.Text`
     color: #fff;
-    font-size: 17px;
+    font-size: 20px;
     font-weight: bold;
 `
 

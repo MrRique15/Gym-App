@@ -6,7 +6,6 @@ import {
     Input, 
     ButtonSubmit, 
     TextSubmit,
-    Text
 } from './styles';
 
 function Singin() {
@@ -16,18 +15,9 @@ function Singin() {
                 <Title>Cadastro</Title>
                 <Input 
                     placeholderTextColor="#fff"
-                    placeholder="Nome"
-                    secureTextEntry
-                />
-                <Input 
-                    placeholderTextColor="#fff"
-                    placeholder="Sobrenome"
-                    secureTextEntry
-                />
-                <Input 
-                    placeholderTextColor="#fff"
                     placeholder="E-mail"
-                />               
+                />
+                
                 <Input 
                     placeholderTextColor="#fff"
                     placeholder="Senha"
@@ -35,13 +25,27 @@ function Singin() {
                 />
                 <Input 
                     placeholderTextColor="#fff"
-                    placeholder="Confirmar senha"
-                    secureTextEntry
+                    placeholder="Nome"
+                />
+                <Input 
+                    placeholderTextColor="#fff"
+                    placeholder="Idade"
+                />
+                <Input 
+                    placeholderTextColor="#fff"
+                    placeholder="Peso"
+                />
+                <Input 
+                    placeholderTextColor="#fff"
+                    placeholder="Altura"
+                />
+                <Input 
+                    placeholderTextColor="#fff"
+                    placeholder="Tipo físico"
                 />
                 <ButtonSubmit>
                     <TextSubmit>Cadastrar</TextSubmit>
                 </ButtonSubmit>
-                <Text>Ao cadastrar você concorda com os termos de serviço e políticas de privacidade</Text>
             </Container>
         </KeyBoardView>
     )

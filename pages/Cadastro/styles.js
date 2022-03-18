@@ -18,9 +18,8 @@ export const Title = styled.Text`
     font-size: 26px;
     font-weight: 700;
     margin-bottom: 30px;
-    font-style: italic;
-    padding-top: 15px;
-    padding-bottom: 10%;
+    padding-top: 100px;
+    padding-bottom: 5%;
 `
 
 export const Input = styled.TextInput`
@@ -39,7 +38,7 @@ export const ButtonSubmit = styled.TouchableOpacity`
     width: 50%;
     padding: 10px;
     align-items: center;
-    margin-bottom: 30px;
+    margin-bottom: 10px;
 `
 
 export const ButtonCreateAccount = styled.TouchableOpacity`
@@ -52,14 +51,15 @@ export const ButtonCreateAccount = styled.TouchableOpacity`
 
 export const TextSubmit = styled.Text`
     color: #fff;
-    font-size: 20px;
+    font-size: 18px;
     font-weight: bold;
 `
 
-export const TextCreateAccount = styled.Text`
-    color: #000;
-    font-size: 18px;
-    font-weight: bold;
+export const Text = styled.Text`
+    color: #fff;
+    font-size: 10px;
+    font-weight: normal;
+    margin-bottom: 15px;
 `
 
 export const NormalText = styled.Text`

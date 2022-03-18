@@ -17,7 +17,7 @@ function Singin({navigation}) {
         <KeyBoardView>
             <Header />
             <Container>
-                <Title>GYM APP</Title>
+                <Title>FIT IN</Title>
                 <Input 
                     placeholderTextColor="#fff"
                     placeholder="E-mail"
@@ -27,8 +27,11 @@ function Singin({navigation}) {
                     placeholder="Senha"
                     secureTextEntry
                 />
-                <ButtonSubmit>
+                <ButtonSubmit onPress ={()=> navigation.navigate('Menu')}>
                     <TextSubmit>Entrar</TextSubmit>
+                </ButtonSubmit>
+                <ButtonSubmit>
+                    <TextSubmit>Recuperar Senha</TextSubmit>
                 </ButtonSubmit>
                 <NormalText>Ainda não possui uma conta?</NormalText>
                 <ButtonCreateAccount onPress ={()=> navigation.navigate('Cadastro')}>
