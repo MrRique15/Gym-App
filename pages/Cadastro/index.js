@@ -10,6 +10,7 @@ import {
 } from './styles';
 
 function Cadastro({navigation}) {
+<<<<<<< HEAD
     const [name, setName] = useState('');
     const [surename, setSurename] = useState('');
     const [email, setEmail] = useState('');
@@ -44,6 +45,8 @@ function Cadastro({navigation}) {
         }
     }
     
+=======
+>>>>>>> 0e0f398b80b7ad71396bd8580cb082f13ddced1b
     return (
         <KeyBoardView>
             <Container>
@@ -56,6 +59,7 @@ function Cadastro({navigation}) {
                 />
                 <Input 
                     placeholderTextColor="#fff"
+<<<<<<< HEAD
                     placeholder="Sobrenome"
                     onChangeText={(text) => setSurename(text)}
                 />
@@ -68,15 +72,39 @@ function Cadastro({navigation}) {
                     placeholderTextColor="#fff"
                     placeholder="Senha"
                     onChangeText={(text) => setPassword(text)}
+=======
+                    placeholder="Idade"
                     secureTextEntry
                 />
                 <Input 
                     placeholderTextColor="#fff"
+                    placeholder="Tipo físico"
+                />               
+                <Input 
+                    placeholderTextColor="#fff"
+                    placeholder="Doenças crônicas"
+>>>>>>> 0e0f398b80b7ad71396bd8580cb082f13ddced1b
+                    secureTextEntry
+                />
+                <Input 
+                    placeholderTextColor="#fff"
+<<<<<<< HEAD
                     placeholder="Confirmar senha"
                     onChangeText={(text) => setConfirmPassword(text)}
                     secureTextEntry
                 />
                 <ButtonSubmit onPress={()=>sendForm()} >
+=======
+                    placeholder="Peso"
+                    secureTextEntry
+                />
+                <Input 
+                    placeholderTextColor="#fff"
+                    placeholder="Altura"
+                    secureTextEntry
+                />
+                <ButtonSubmit onPress ={()=> navigation.navigate('CadastroConcluido')}>
+>>>>>>> 0e0f398b80b7ad71396bd8580cb082f13ddced1b
                     <TextSubmit>Cadastrar</TextSubmit>
                 </ButtonSubmit>
                 <Text>Ao cadastrar você concorda com os termos de serviço e políticas de privacidade</Text>
