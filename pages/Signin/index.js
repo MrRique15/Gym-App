@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { 
     KeyBoardView, 
     Title, 
@@ -8,26 +8,54 @@ import {
     ButtonCreateAccount,
     TextSubmit,
     TextCreateAccount,
-    NormalText
+    NormalText,
 } from './styles';
 import Header from '../../components/Header';
 
 function Singin({navigation}) {
+    const [email, setEmail] = useState(null);
+    const [password, setPassword] = useState(null);
+
+    async function sendForm()
+    {
+        let response = await fetch('http://192.168.0.91:3000/login',{
+            method: 'POST',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                email: email,
+                password: password,
+            })
+        });
+
+        let json = await response.json();
+        if(json.error == 'logar'){
+            navigation.navigate('Menu');
+        }else if(json.error == 'error'){
+            alert(json.message);
+        }
+    }
+
     return (
         <KeyBoardView>
             <Header />
             <Container>
                 <Title>FIT IN</Title>
+                
                 <Input 
                     placeholderTextColor="#fff"
                     placeholder="E-mail"
+                    onChangeText={(text) => setEmail(text)}
                 />
                 <Input 
                     placeholderTextColor="#fff"
                     placeholder="Senha"
+                    onChangeText={(text) => setPassword(text)}
                     secureTextEntry
                 />
-                <ButtonSubmit onPress ={()=> navigation.navigate('Menu')}>
+                <ButtonSubmit onPress ={()=> sendForm()}>
                     <TextSubmit>Entrar</TextSubmit>
                 </ButtonSubmit>
                 <ButtonSubmit>
