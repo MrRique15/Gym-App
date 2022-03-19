@@ -47,7 +47,7 @@ function Singin({navigation}) {
                 <Input 
                     placeholderTextColor="#fff"
                     placeholder="E-mail"
-                    onChangeText={(text) => setEmail(text)}
+                    onChangeText={(text) => setEmail(text.toLowerCase())}
                 />
                 <Input 
                     placeholderTextColor="#fff"
