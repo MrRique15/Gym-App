@@ -25,14 +25,12 @@ mongoose.connection.on('error', (err) => {
 app.post('/cadastro', async (req, res) => {
     let response = await User.findOne({email:req.body.email});
 
-    if(req.body.name == '' || req.body.surename == '' || req.body.email == '' || req.body.password == '' || req.body.confirmpassword == ''){
+    if(req.body.email == '' || req.body.password == '' || req.body.confirmpassword == ''){
         res.send(JSON.stringify({error:'error',message:'Preencha todos os Campos!'}));
     }else if(req.body.password != req.body.confirmpassword){
         res.send(JSON.stringify({error:'error',message:'As senhas não são iguais!'}));
     }else if (response == null){
         const user = await User.create({ 
-            name: req.body.name,
-            surename: req.body.surename,
             email: req.body.email,
             password: req.body.password
         });

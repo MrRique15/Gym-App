@@ -10,23 +10,19 @@ import {
 } from './styles';
 
 function Cadastro({navigation}) {
-    const [name, setName] = useState('');
-    const [surename, setSurename] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confirmpassword, setConfirmPassword] = useState('');
 
     async function sendForm()
     {
-        let response = await fetch('http://192.168.0.10:3000/cadastro',{
+        let response = await fetch('http://26.64.165.191:3000/cadastro',{
             method: 'POST',
             headers: {
                 Accept: 'application/json',
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                name: name,
-                surename: surename,
                 email: email,
                 password: password,
                 confirmpassword: confirmpassword
