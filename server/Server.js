@@ -74,7 +74,7 @@ app.post('/completarcadastro', async (req, res) => {
             surename: req.body.surename,
             age: parseInt(req.body.age),
             weight: parseFloat(req.body.weight),
-            height: parseFloat(req.body.height) //nada
+            height: parseFloat(req.body.height)
         }, function(err, result){
             if(err){
                 res.send(JSON.stringify({error:'error',message:'Erro ao completar Cadastro!'}));
