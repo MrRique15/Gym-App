@@ -43,6 +43,7 @@ function Menu({navigation}){
                     <TouchableOpacity
                     style={styles.buttonFacebookStyle}
                     activeOpacity={0.5}
+                    onPress={() => navigation.navigate('Dietas')}
                     >
                         <Image
                         source={require('../../assets/images/diet.png')}
