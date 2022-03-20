@@ -16,7 +16,7 @@ function Cadastro({navigation}) {
 
     async function sendForm()
     {
-        let response = await fetch('http://192.168.100.19:3000/cadastro',{
+        let response = await fetch('http://192.168.0.91:3000/cadastro',{
             method: 'POST',
             headers: {
                 Accept: 'application/json',
@@ -33,8 +33,8 @@ function Cadastro({navigation}) {
         if(json.error == 'cadastrar'){
             alert(json.message);
             setTimeout(() => {
-                navigation.navigate('CadastroConcluido')
-            }, 2000);
+                navigation.navigate('CadastroConcluido');
+            }, 200);
         }else if(json.error == 'error'){
             alert(json.message);
         }

@@ -1,0 +1,93 @@
+import React, {useState,useEffect} from 'react';
+import { 
+    KeyBoardView, 
+    Title, 
+    Container, 
+    Input, 
+    ButtonSubmit, 
+    TextSubmit,
+    Text
+} from './styles';
+
+function CompletarCadastro({navigation}) {
+    const [email, setEmail] = useState('');
+    const [name, setName] = useState('');
+    const [surename, setSurename] = useState('');
+    const [age, setAge] = useState('');
+    const [high, setHigh] = useState('');
+    const [weight, setWeight] = useState('');
+
+    async function sendForm()
+    {
+        let response = await fetch('http://192.168.0.91:3000/completarcadastro',{
+            method: 'POST',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                email: email,
+                name: name,
+                surename: surename,
+                age: age,
+                high: high,
+                weight: weight
+            })
+        });
+
+        let json = await response.json();
+        if(json.error == 'cadastrocompleto'){
+            alert(json.message);
+            setTimeout(() => {
+                navigation.navigate('Menu');
+            }, 200);
+        }else if(json.error == 'error'){
+            alert(json.message);
+        }
+    }
+    
+    return (
+        <KeyBoardView>
+            <Container>
+                <Title>Cadastro</Title>
+
+                <Input 
+                    placeholderTextColor="#fff"
+                    placeholder="Confirme seu E-mail"
+                    onChangeText={(text) => setEmail(text.toLowerCase())}
+                />
+                <Input 
+                    placeholderTextColor="#fff"
+                    placeholder="Nome"
+                    onChangeText={(text) => setName(text)}
+                />               
+                <Input 
+                    placeholderTextColor="#fff"
+                    placeholder="Sobrenome"
+                    onChangeText={(text) => setSurename(text)}
+                />
+                <Input 
+                    placeholderTextColor="#fff"
+                    placeholder="Idade"
+                    onChangeText={(text) => setAge(text)}
+                />
+                <Input 
+                    placeholderTextColor="#fff"
+                    placeholder="Altura (m)"
+                    onChangeText={(text) => setHigh(text)}
+                />
+                <Input 
+                    placeholderTextColor="#fff"
+                    placeholder="Peso (kg)"
+                    onChangeText={(text) => setWeight(text)}
+                />
+                <ButtonSubmit onPress ={()=> sendForm()}>
+                    <TextSubmit>Finalizar</TextSubmit>
+                </ButtonSubmit>
+            </Container>
+        </KeyBoardView>
+        
+    )
+}
+
+export default CompletarCadastro;

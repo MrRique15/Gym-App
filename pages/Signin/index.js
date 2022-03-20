@@ -18,7 +18,7 @@ function Singin({navigation}) {
 
     async function sendForm()
     {
-        let response = await fetch('http://192.168.100.19:3000/login',{
+        let response = await fetch('http://192.168.0.91:3000/login',{
             method: 'POST',
             headers: {
                 Accept: 'application/json',
@@ -33,6 +33,11 @@ function Singin({navigation}) {
         let json = await response.json();
         if(json.error == 'logar'){
             navigation.navigate('Menu');
+        }else if(json.error == 'incomplete'){
+            alert(json.message);
+            setTimeout(() => {
+                navigation.navigate('CompletarCadastro');
+            }, 200);
         }else if(json.error == 'error'){
             alert(json.message);
         }
