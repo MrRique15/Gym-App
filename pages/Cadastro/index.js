@@ -51,16 +51,6 @@ function Cadastro({navigation}) {
 
                 <Input 
                     placeholderTextColor="#fff"
-                    placeholder="Nome"
-                    onChangeText={(text) => setName(text)}
-                />
-                <Input 
-                    placeholderTextColor="#fff"
-                    placeholder="Sobrenome"
-                    onChangeText={(text) => setSurename(text)}
-                />
-                <Input 
-                    placeholderTextColor="#fff"
                     placeholder="E-mail"
                     onChangeText={(text) => setEmail(text)}
                 />               
@@ -72,22 +62,8 @@ function Cadastro({navigation}) {
                 />
                 <Input 
                     placeholderTextColor="#fff"
-                    placeholder="Tipo físico"
-                />               
-                <Input 
-                    placeholderTextColor="#fff"
-                    placeholder="Doenças crônicas"
-                    secureTextEntry
-                />
-                <Input 
-                    placeholderTextColor="#fff"
                     placeholder="Confirmar senha"
                     onChangeText={(text) => setConfirmPassword(text)}
-                    secureTextEntry
-                />
-                <Input 
-                    placeholderTextColor="#fff"
-                    placeholder="Altura"
                     secureTextEntry
                 />
                 <ButtonSubmit onPress ={()=> sendForm()}>
