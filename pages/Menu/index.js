@@ -98,7 +98,7 @@ function Menu({navigation}){
                         activeOpacity={0.5}
                     >
                             <Image
-                                source={require('../../assets/images/perfil-picture.png')}
+                                source={require('../../assets/images/perfil.png')}
                                 style={{resizeMode: 'contain',
                                         height: 100,
                                         width: 60}}
