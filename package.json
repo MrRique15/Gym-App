@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "node_modules/expo/AppEntry.js",
   "scripts": {
-    "start": "expo start",
+    "start": "concurrently \"expo start\" \"nodemon ./server/Server.js\"",
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
@@ -13,6 +13,7 @@
     "@react-navigation/native": "^6.0.8",
     "@react-navigation/native-stack": "^6.5.0",
     "@react-navigation/stack": "^6.1.1",
+    "concurrently": "^7.0.0",
     "expo": "~44.0.0",
     "expo-app-loading": "~1.3.0",
     "expo-font": "~10.0.4",
@@ -33,6 +34,7 @@
     "body-parser": "^1.19.2",
     "cors": "^2.8.5",
     "express": "^4.17.3",
+    "mongoose": "^6.2.7",
     "nodemon": "^2.0.15"
   },
   "private": true

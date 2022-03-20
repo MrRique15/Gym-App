@@ -18,7 +18,7 @@ function Singin({navigation}) {
 
     async function sendForm()
     {
-        let response = await fetch('http://192.168.0.91:3000/login',{
+        let response = await fetch('http://192.237.68.91:3000/login',{
             method: 'POST',
             headers: {
                 Accept: 'application/json',
@@ -47,7 +47,7 @@ function Singin({navigation}) {
                 <Input 
                     placeholderTextColor="#fff"
                     placeholder="E-mail"
-                    onChangeText={(text) => setEmail(text)}
+                    onChangeText={(text) => setEmail(text.toLowerCase())}
                 />
                 <Input 
                     placeholderTextColor="#fff"
