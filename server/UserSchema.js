@@ -21,7 +21,7 @@ const UserSchema = new mongoose.Schema({
         type: Number,
         require: true
     },
-    high: {
+    height: {
         type: Number,
         require: true
     },

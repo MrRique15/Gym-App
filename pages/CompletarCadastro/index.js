@@ -14,7 +14,7 @@ function CompletarCadastro({navigation}) {
     const [name, setName] = useState('');
     const [surename, setSurename] = useState('');
     const [age, setAge] = useState('');
-    const [high, setHigh] = useState('');
+    const [height, setHeight] = useState('');
     const [weight, setWeight] = useState('');
 
     async function sendForm()
@@ -30,7 +30,7 @@ function CompletarCadastro({navigation}) {
                 name: name,
                 surename: surename,
                 age: age,
-                high: high,
+                height: height,
                 weight: weight
             })
         });
@@ -74,7 +74,7 @@ function CompletarCadastro({navigation}) {
                 <Input 
                     placeholderTextColor="#fff"
                     placeholder="Altura (m)"
-                    onChangeText={(text) => setHigh(text)}
+                    onChangeText={(text) => setHeight(text)}
                 />
                 <Input 
                     placeholderTextColor="#fff"

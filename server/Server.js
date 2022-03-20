@@ -36,7 +36,7 @@ app.post('/cadastro', async (req, res) => {
             email: req.body.email,
             password: req.body.password,
             age: 0,
-            high: 0.00,
+            height: 0.00,
             weight: 0.00
         });
         res.send(JSON.stringify({error:'cadastrar',message:'Cadastro realizado com sucesso!'}));
@@ -62,6 +62,8 @@ app.post('/login', async (req, res) => {
 
 app.post('/completarcadastro', async (req, res) => {
     let response = await User.findOne({email:req.body.email});
+    console.log(parseFloat(req.body.height));
+    console.log(parseFloat(req.body.weight));
     if (response == null){
         res.send(JSON.stringify({error:'error',message:'Usuário não encontrado!'}));
     }else if(req.body.name == '' || req.body.surename == '' || req.body.age == '' || req.body.weight == '' || req.body.height == ''){
