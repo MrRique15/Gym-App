@@ -17,12 +17,6 @@ const styles = StyleSheet.create({
         margin: 20,
         width: 60,
         height: 100
-    },
-    buttonTextStyle: {
-        color: '#fff',
-        marginBottom: 4,
-        flexDirection: 'row',
-        alignItems: 'center',
     }
   });
 
@@ -43,7 +37,6 @@ function Menu({navigation}){
                 />
                 <Text style={{color: '#fff'}}>MENU</Text>
                 <View style={{
-                    flex: 1, 
                     flexDirection: 'row',
                     alignContent: 'center'}}
                 >
@@ -55,9 +48,14 @@ function Menu({navigation}){
                         source={require('../../assets/images/diet.png')}
                         style={{resizeMode: 'contain',
                                 height: 100,
-                                width: 70,
+                                width: 65,
                         }}
                         />
+                        <Text style={{
+                                color: '#fff',
+                                flexDirection: 'row',
+                                marginLeft: 12
+                        }}>Dieta</Text>
                     </TouchableOpacity>
                     <TouchableOpacity
                         style={styles.buttonFacebookStyle}
@@ -71,6 +69,11 @@ function Menu({navigation}){
                                     width: 60,
                         }}
                         />
+                        <Text style={{
+                                color: '#fff',
+                                flexDirection: 'row',
+                                marginLeft: 18
+                        }}>IMC</Text>
                     </TouchableOpacity>
                     <TouchableOpacity
                         style={styles.buttonFacebookStyle}
@@ -83,10 +86,12 @@ function Menu({navigation}){
                                     width: 60,
                         }}
                         />
+                        <Text style={{
+                                color: '#fff',
+                                flexDirection: 'row',
+                                marginLeft: 10
+                        }}>Metas</Text>
                     </TouchableOpacity>
-                </View>
-                <View>
-                    <Text style={styles.buttonTextStyle}>Oi</Text>
                 </View>
                 <View style={{
                     flex: 1, 
@@ -103,17 +108,27 @@ function Menu({navigation}){
                                         height: 100,
                                         width: 60}}
                             />
+                            <Text style={{
+                                color: '#fff',
+                                flexDirection: 'row',
+                                marginLeft: 10
+                            }}>Perfil</Text>
                     </TouchableOpacity>
                     <TouchableOpacity
                         style={styles.buttonFacebookStyle}
                         activeOpacity={0.5}
                     >
-                            <Image
-                                source={require('../../assets/images/gym.png')}
-                                style={{resizeMode: 'contain',
-                                        height: 100,
-                                        width: 70}}
+                        <Image
+                            source={require('../../assets/images/gym.png')}
+                            style={{resizeMode: 'contain',
+                                    height: 100,
+                                    width: 70}}
                             />
+                            <Text style={{
+                                color: '#fff',
+                                flexDirection: 'row',
+                                marginLeft: 10
+                            }}>Treinos</Text>
                     </TouchableOpacity>
                     <TouchableOpacity
                         style={styles.buttonFacebookStyle}
@@ -125,6 +140,11 @@ function Menu({navigation}){
                                         height: 100,
                                         width: 60}}
                             />
+                            <Text style={{
+                                color: '#fff',
+                                flexDirection: 'row',
+                                marginLeft: 10
+                            }}>Saúde</Text>
                     </TouchableOpacity>
                 </View>
             </View>
