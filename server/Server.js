@@ -31,8 +31,13 @@ app.post('/cadastro', async (req, res) => {
         res.send(JSON.stringify({error:'error',message:'As senhas não são iguais!'}));
     }else if (response == null){
         const user = await User.create({ 
+            name: '',
+            surename: '',
             email: req.body.email,
-            password: req.body.password
+            password: req.body.password,
+            age: 0,
+            height: 0.00,
+            weight: 0.00
         });
         res.send(JSON.stringify({error:'cadastrar',message:'Cadastro realizado com sucesso!'}));
     }else{
@@ -47,7 +52,36 @@ app.post('/login', async (req, res) => {
     }else if (response == null){
         res.send(JSON.stringify({error:'error',message:'Login ou Senha incorretos!'}));
     }else if(response.email == req.body.email && response.password == req.body.password){
-        res.send(JSON.stringify({error:'logar',message:'Logado com sucesso!'}));
+        if(response.name == '' || response.surename == ''){
+            res.send(JSON.stringify({error:'incomplete',message:'Finalize seu cadastro!'}));
+        }else{
+            res.send(JSON.stringify({error:'logar',message:'Logado com sucesso!'}));
+        }
+    }
+});
+
+app.post('/completarcadastro', async (req, res) => {
+    let response = await User.findOne({email:req.body.email});
+    console.log(parseFloat(req.body.height));
+    console.log(parseFloat(req.body.weight));
+    if (response == null){
+        res.send(JSON.stringify({error:'error',message:'Usuário não encontrado!'}));
+    }else if(req.body.name == '' || req.body.surename == '' || req.body.age == '' || req.body.weight == '' || req.body.height == ''){
+        res.send(JSON.stringify({error:'error',message:'Preencha todos os Campos!'}));
+    }else{
+        User.updateOne({email:req.body.email},{
+            name: req.body.name,
+            surename: req.body.surename,
+            age: parseInt(req.body.age),
+            weight: parseFloat(req.body.weight),
+            height: parseFloat(req.body.height)
+        }, function(err, result){
+            if(err){
+                res.send(JSON.stringify({error:'error',message:'Erro ao completar Cadastro!'}));
+            }else{
+                res.send(JSON.stringify({error:'cadastrocompleto',message:'Cadastro finalizado com sucesso!'}));
+            }
+        });
     }
 });
 

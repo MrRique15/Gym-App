@@ -33,8 +33,8 @@ function Cadastro({navigation}) {
         if(json.error == 'cadastrar'){
             alert(json.message);
             setTimeout(() => {
-                navigation.navigate('CadastroConcluido')
-            }, 2000);
+                navigation.navigate('CadastroConcluido');
+            }, 200);
         }else if(json.error == 'error'){
             alert(json.message);
         }

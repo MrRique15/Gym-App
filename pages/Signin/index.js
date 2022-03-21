@@ -33,6 +33,11 @@ function Singin({navigation}) {
         let json = await response.json();
         if(json.error == 'logar'){
             navigation.navigate('Menu');
+        }else if(json.error == 'incomplete'){
+            alert(json.message);
+            setTimeout(() => {
+                navigation.navigate('CompletarCadastro');
+            }, 200);
         }else if(json.error == 'error'){
             alert(json.message);
         }
