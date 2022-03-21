@@ -16,7 +16,7 @@ function Cadastro({navigation}) {
 
     async function sendForm()
     {
-        let response = await fetch('http://192.168.237.68:3000/cadastro',{
+        let response = await fetch('http://192.168.100.19:3000/cadastro',{
             method: 'POST',
             headers: {
                 Accept: 'application/json',
