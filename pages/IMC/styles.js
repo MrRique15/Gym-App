@@ -33,6 +33,7 @@ export const ButtonSubmit = styled.TouchableOpacity`
     padding: 10px;
     align-items: center;
     margin-bottom: 90px;
+    
 `
 
 export const TextSubmit = styled.Text`

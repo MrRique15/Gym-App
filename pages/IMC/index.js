@@ -10,14 +10,20 @@ const styles = StyleSheet.create({
       },
       balance2: {
         resizeMode: 'contain',
-        height: 200,
+        height: 80,
         width: 300,
         marginTop: 60,
       },
       Text: {
+        color: '#ffffff',
         textAlign: 'center',  
-        height: 100,
-        marginTop: 5,
+        height: 50,
+        marginTop: 50,
+      },
+      Text2: {
+        color: '#ffffff',
+        textAlign: 'center',  
+        height: 50,
       }
       
   });
@@ -25,8 +31,8 @@ const styles = StyleSheet.create({
 
 function IMC(){
     return(
-        <Container>
-            <View style={styles.container}>
+        <Container style={styles.container}>
+            <View >
                 <Image
                 style={styles.balance2}
                 source={require('../../assets/images/balance2.png')}
@@ -36,8 +42,9 @@ function IMC(){
         <Input 
                     placeholderTextColor="#fff"
                     placeholder="Altura"
+                    
         /> 
-        <Text style={styles.Text}>Informe seu peso</Text>
+        <Text style={styles.Text2}>Informe seu peso</Text>
         <InputDois 
                     placeholderTextColor="#fff"
                     placeholder="Peso"
