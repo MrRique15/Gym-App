@@ -32,7 +32,8 @@ export const ButtonSubmit = styled.TouchableOpacity`
     width: 50%;
     padding: 10px;
     align-items: center;
-    margin-bottom: 90px;
+    margin-top: 30px;
+    margin-bottom: 10px;
     
 `
 
@@ -40,4 +41,11 @@ export const TextSubmit = styled.Text`
     color: #fff;
     font-size: 18px;
     font-weight: bold;
+`
+
+export const TextResult = styled.Text`
+    color: yellow;
+    font-size: 25px;
+    font-weight: bold;
+    margin-top: 30px;
 `
