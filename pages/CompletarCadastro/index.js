@@ -19,7 +19,7 @@ function CompletarCadastro({navigation}) {
 
     async function sendForm()
     {
-        let response = await fetch('http://192.168.0.91:3000/completarcadastro',{
+        let response = await fetch('http://172.20.10.6:3000/completarcadastro',{
             method: 'POST',
             headers: {
                 Accept: 'application/json',
@@ -70,19 +70,19 @@ function CompletarCadastro({navigation}) {
                     placeholderTextColor="#fff"
                     placeholder="Idade"
                     keyboardType="numeric"
-                    onChangeText={(text) => setAge(text)}
+                    onChangeText={(text) => setAge(text.replace(',','.'))}
                 />
                 <Input 
                     placeholderTextColor="#fff"
                     placeholder="Altura (m)"
                     keyboardType="numeric"
-                    onChangeText={(text) => setHeight(text)}
+                    onChangeText={(text) => setHeight(text.replace(',','.'))}
                 />
                 <Input 
                     placeholderTextColor="#fff"
                     placeholder="Peso (kg)"
                     keyboardType="numeric"
-                    onChangeText={(text) => setWeight(text)}
+                    onChangeText={(text) => setWeight(text.replace(',','.'))}
                 />
                 <ButtonSubmit onPress ={()=> sendForm()}>
                     <TextSubmit>Finalizar</TextSubmit>

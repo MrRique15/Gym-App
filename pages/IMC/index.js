@@ -37,7 +37,9 @@ function IMC() {
 
   function calcular(){
     if(peso > 0 && altura > 0){
+      console.log(peso, altura);
       let imc = peso / (altura * altura);
+      console.log(imc);
       if(imc < 16){
         alert('Magreza Grave');
         setResultado("Magreza Grave");
@@ -80,13 +82,15 @@ function IMC() {
       <Input
         placeholderTextColor="#fff"
         placeholder="Altura"
-        onChangeText={(text) => setAltura(parseFloat(text))}
+        keyboardType="numeric"
+        onChangeText={(text) => setAltura(parseFloat(text.replace(',','.')))}
       />
       <Text style={styles.Text2}>Informe seu peso</Text>
       <InputDois
         placeholderTextColor="#fff"
         placeholder="Peso"
-        onChangeText={(text) => setPeso(parseFloat(text))}
+        keyboardType="numeric"
+        onChangeText={(text) => setPeso(parseFloat(text.replace(',','.')))}
       />
       <ButtonSubmit
         onPress={() => calcular()}
