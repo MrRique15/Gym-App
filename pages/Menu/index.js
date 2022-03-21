@@ -1,9 +1,7 @@
 import React from 'react';
 import {View, Text, Image, StyleSheet, TouchableOpacity} from 'react-native'
 import { Container } from './styles'
-
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { useAuth } from '../../server/providers/Auth';
 
 const styles = StyleSheet.create({
     container: {
@@ -20,6 +18,8 @@ const styles = StyleSheet.create({
   });
 
 function Menu({navigation}){
+    const {user} = useAuth();
+
     return(
         <Container>
             <View style={{
@@ -35,6 +35,7 @@ function Menu({navigation}){
                     }}
                 />
                 <Text style={{color: '#fff'}}>MENU</Text>
+                <Text style={{color: 'lightgreen'}}>Olá {user.name} {user.surename}</Text>
                 <View style={{
                     flexDirection: 'row',
                     alignContent: 'center'}}

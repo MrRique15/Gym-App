@@ -55,7 +55,7 @@ app.post('/login', async (req, res) => {
         if(response.name == '' || response.surename == ''){
             res.send(JSON.stringify({error:'incomplete',message:'Finalize seu cadastro!'}));
         }else{
-            res.send(JSON.stringify({error:'logar',message:'Logado com sucesso!'}));
+            res.send(JSON.stringify({error:'logar',message:'Logado com sucesso!',name:response.name,surename:response.surename,email:response.email}));
         }
     }
 });

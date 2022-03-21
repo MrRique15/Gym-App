@@ -11,14 +11,17 @@ import {
     NormalText,
 } from './styles';
 import Header from '../../components/Header';
+import { useAuth } from '../../server/providers/Auth';
 
 function Singin({navigation}) {
     const [email, setEmail] = useState(null);
     const [password, setPassword] = useState(null);
 
+    const { setUser } = useAuth();
+
     async function sendForm()
     {
-        let response = await fetch('http://172.20.10.6:3000/login',{
+        let response = await fetch('http://192.168.0.91:3000/login',{
             method: 'POST',
             headers: {
                 Accept: 'application/json',
@@ -32,7 +35,12 @@ function Singin({navigation}) {
 
         let json = await response.json();
         if(json.error == 'logar'){
-            navigation.navigate('Menu');
+            setUser({
+                name: json.name,
+                surename: json.surename,
+                email: json.email,
+            });
+            navigation.navigate('Menu');   
         }else if(json.error == 'incomplete'){
             alert(json.message);
             setTimeout(() => {
