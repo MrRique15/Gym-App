@@ -1,157 +1,129 @@
 import React from 'react';
 import {View, Text, Image, StyleSheet, TouchableOpacity} from 'react-native'
-import { Container } from './styles'
 import { useAuth } from '../../server/providers/Auth';
-
-const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      backgroundColor: '#fff',
-      alignItems: 'center',
-      justifyContent: 'center',
-    },
-    buttonFacebookStyle: {
-        margin: 20,
-        width: 60,
-        height: 100
-    }
-  });
 
 function Menu({navigation}){
     const {user} = useAuth();
 
     return(
-        <Container>
-            <View style={{
-                backgroundColor: '#5a58d4',
-                flex: 1,
-                alignItems: 'center',
-            }}>
-                <Image 
-                    source={require('../../assets/images/logo.png')}
-                    style={{resizeMode: 'contain',
-                            height: 200,
-                            width: 100
-                    }}
-                />
-                <Text style={{color: '#fff'}}>MENU</Text>
-                <Text style={{color: 'lightgreen'}}>Olá {user.name} {user.surename}</Text>
-                <View style={{
-                    flexDirection: 'row',
-                    alignContent: 'center'}}
-                >
-                    <TouchableOpacity
+        <View style={styles.container}>
+            <Image 
+                style={styles.logo}
+                source={require('../../assets/images/logo.png')}
+            />
+            <Text style={styles.welcome}>
+                Olá, {user.name} {user.surename}
+            </Text>
+            <View style={styles.options}>
+                <TouchableOpacity
                     style={styles.buttonFacebookStyle}
                     activeOpacity={0.5}
                     onPress={() => navigation.navigate('Dietas')}
-                    >
-                        <Image
-                        source={require('../../assets/images/diet.png')}
-                        style={{resizeMode: 'contain',
-                                height: 100,
-                                width: 65,
-                        }}
-                        />
-                        <Text style={{
-                                color: '#fff',
-                                flexDirection: 'row',
-                                marginLeft: 12
-                        }}>Dieta</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity
-                        style={styles.buttonFacebookStyle}
-                        activeOpacity={0.5}
-                        onPress={() => navigation.navigate('IMC')}
-                    >
-                        <Image
-                            source={require('../../assets/images/balance.png')}
-                            style={{resizeMode: 'contain',
-                                    height: 100,
-                                    width: 60,
-                        }}
-                        />
-                        <Text style={{
-                                color: '#fff',
-                                flexDirection: 'row',
-                                marginLeft: 18
-                        }}>IMC</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity
-                        style={styles.buttonFacebookStyle}
-                        activeOpacity={0.5}
-                    >
-                        <Image
-                            source={require('../../assets/images/metas.png')}
-                            style={{resizeMode: 'contain',
-                                    height: 100,
-                                    width: 60,
-                        }}
-                        />
-                        <Text style={{
-                                color: '#fff',
-                                flexDirection: 'row',
-                                marginLeft: 10
-                        }}>Metas</Text>
-                    </TouchableOpacity>
-                </View>
-                <View style={{
-                    flex: 1, 
-                    flexDirection: 'row',
-                    alignContent: 'center'}}
                 >
-                    <TouchableOpacity
-                        style={styles.buttonFacebookStyle}
-                        activeOpacity={0.5}
-                    >
-                            <Image
-                                source={require('../../assets/images/perfil.png')}
-                                style={{resizeMode: 'contain',
-                                        height: 100,
-                                        width: 60}}
-                            />
-                            <Text style={{
-                                color: '#fff',
-                                flexDirection: 'row',
-                                marginLeft: 10
-                            }}>Perfil</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity
-                        style={styles.buttonFacebookStyle}
-                        activeOpacity={0.5}
-                        onPress={() => navigation.navigate('Treinos')}
-                    >
-                        <Image
-                            source={require('../../assets/images/gym.png')}
-                            style={{resizeMode: 'contain',
-                                    height: 100,
-                                    width: 70}}
-                            />
-                            <Text style={{
-                                color: '#fff',
-                                flexDirection: 'row',
-                                marginLeft: 10
-                            }}>Treinos</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity
-                        style={styles.buttonFacebookStyle}
-                        activeOpacity={0.5}
-                    >
-                            <Image
-                                source={require('../../assets/images/stethoscope.png')}
-                                style={{resizeMode: 'contain',
-                                        height: 100,
-                                        width: 60}}
-                            />
-                            <Text style={{
-                                color: '#fff',
-                                flexDirection: 'row',
-                                marginLeft: 10
-                            }}>Saúde</Text>
-                    </TouchableOpacity>
-                </View>
+                    <Image
+                        style={styles.icon}
+                        source={require('../../assets/images/diet.png')}
+                    />
+                    <Text style={styles.optionText}>Dieta</Text>
+                </TouchableOpacity>
+
+                <TouchableOpacity
+                    style={styles.buttonFacebookStyle}
+                    activeOpacity={0.5}
+                    onPress={() => navigation.navigate('IMC')}
+                >
+                    <Image
+                        source={require('../../assets/images/balance.png')}
+                        style={styles.icon}
+                    />
+                    <Text style={styles.optionText}>IMC</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                    style={styles.buttonFacebookStyle}
+                    activeOpacity={0.5}
+                    onPress={() => navigation.navigate('Metas')}
+                >
+                    <Image
+                        source={require('../../assets/images/metas.png')}
+                        style={styles.icon}
+                    />
+                    <Text style={styles.optionText}>Metas</Text>
+                </TouchableOpacity>
             </View>
-        </Container>
+            <View style={styles.options}>
+                <TouchableOpacity
+                    style={styles.buttonFacebookStyle}
+                    activeOpacity={0.5}
+                    onPress={() => navigation.navigate('Perfil')}
+                >
+                        <Image
+                            source={require('../../assets/images/perfil.png')}
+                            style={styles.icon}
+                        />
+                        <Text style={styles.optionText}>Perfil</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                    style={styles.buttonFacebookStyle}
+                    activeOpacity={0.5}
+                    onPress={() => navigation.navigate('Treinos')}
+                >
+                    <Image
+                        source={require('../../assets/images/gym.png')}
+                        style={styles.icon}
+                        />
+                        <Text style={styles.optionText}>Treinos</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                    style={styles.buttonFacebookStyle}
+                    activeOpacity={0.5}
+                    onPress={() => navigation.navigate('Saude')}
+                >
+                        <Image
+                            source={require('../../assets/images/stethoscope.png')}
+                            style={styles.icon}
+                        />
+                        <Text style={styles.optionText}>Saúde</Text>
+                </TouchableOpacity>
+            </View>
+        </View>
     )
 }
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        alignItems: 'center',
+        backgroundColor: 'rgb(90, 88, 212)', 
+        paddingTop: 100
+    },  
+    logo: {
+        resizeMode: 'contain',
+        width: 100,
+        height: 200
+    },
+    options: {
+        flexDirection: 'row',
+        alignContent: 'center'
+    },  
+    buttonFacebookStyle: {
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        margin: 15,
+    },
+    welcome: {
+        color: '#fff',
+        fontSize: 25
+    },
+    icon: {
+        resizeMode: 'contain',
+        height: 100,
+        width: 65
+    },
+    optionText: {
+        color: '#fff',
+        flexDirection: 'row',
+    }
+});
 
 export default Menu

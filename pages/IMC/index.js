@@ -1,34 +1,6 @@
 import * as React from 'react-native';
 import {useState} from 'react';
-import { Text, Image, View, StyleSheet } from 'react-native'
-import { Container, Input, InputDois, ButtonSubmit, TextSubmit, TextResult } from '../IMC/styles';
-
-
-const styles = StyleSheet.create({
-  container: {
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  balance2: {
-    resizeMode: 'contain',
-    height: 80,
-    width: 300,
-    marginTop: 60,
-  },
-  Text: {
-    color: '#ffffff',
-    textAlign: 'center',
-    height: 50,
-    marginTop: 30,
-  },
-  Text2: {
-    color: '#ffffff',
-    textAlign: 'center',
-    height: 50,
-  }
-
-});
-
+import { Text, Image, View, TextInput, TouchableOpacity, StyleSheet } from 'react-native'
 
 function IMC() {
   const [altura, setAltura] = useState('');
@@ -71,35 +43,84 @@ function IMC() {
     }
   }
   return (
-    <Container style={styles.container}>
+    <View style={styles.container}>
       <View >
         <Image
-          style={styles.balance2}
+          style={styles.icon}
           source={require('../../assets/images/balance2.png')}
         />
       </View>
-      <Text style={styles.Text}>Informe sua altura</Text>
-      <Input
+      <Text style={styles.text}>Informe sua altura</Text>
+      <TextInput
+        style={styles.input}
         placeholderTextColor="#fff"
         placeholder="Altura"
         keyboardType="numeric"
         onChangeText={(text) => setAltura(parseFloat(text.replace(',','.')))}
       />
-      <Text style={styles.Text2}>Informe seu peso</Text>
-      <InputDois
+      <Text style={styles.text}>Informe seu peso</Text>
+      <TextInput
+        style={styles.input}
         placeholderTextColor="#fff"
         placeholder="Peso"
         keyboardType="numeric"
         onChangeText={(text) => setPeso(parseFloat(text.replace(',','.')))}
       />
-      <ButtonSubmit
+      <TouchableOpacity
         onPress={() => calcular()}
+        style={styles.button}
       >
-        <TextSubmit>Calcular</TextSubmit>
-      </ButtonSubmit>
-      <TextResult>{resultado}</TextResult>
-    </Container>
+        <Text style={styles.buttonText}>Calcular</Text>
+      </TouchableOpacity>
+    </View>
   )
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: -100,
+    backgroundColor: 'rgb(90, 88, 212)',
+  },
+  icon: {
+    resizeMode: 'contain',
+    height: 80,
+    width: 300,
+  },
+  text: {
+    color: '#ffffff',
+    textAlign: 'center',
+    fontSize: 18,
+    height: 50,
+    marginTop: 30,
+  },
+  input: {
+    borderWidth: 1,
+    borderColor: 'rgb(90, 69, 161)',
+    borderRadius: 4,
+    borderRadius: 9,
+    paddingVertical: 12,
+    paddingHorizontal: 10,
+    color: '#fff',
+    fontSize: 16,
+    width: '80%'
+  },
+  button: {
+    backgroundColor: 'rgb(90, 69, 161)',
+    borderRadius: 9,
+    width: '30%',
+    paddingVertical: 15,
+    alignItems: 'center',
+    marginTop: 30,
+    marginBottom: 10,
+  },
+  buttonText: {
+    color: '#fff',
+    fontSize: 18,
+    fontWeight: 'bold'
+  }
+});
 
 export default IMC;

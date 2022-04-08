@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import RNPickerSelect from "react-native-picker-select";
 import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
 
-export default function App () {
+export default function Dietas () {
     const [ tipofisico, setTipoFisico ] = useState("");
     const [ objetivo, setObjetivo ] = useState("");
     const [ restricoes, setRestricoes ] = useState("");

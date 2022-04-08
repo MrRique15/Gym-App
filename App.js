@@ -7,6 +7,9 @@ import IMC from './pages/IMC/index';
 import CompletarCadastro from './pages/CompletarCadastro/index';
 import Dietas from './pages/Dietas/index';
 import Treinos from './pages/Treinos/index'
+import Metas from './pages/Metas/index'
+import Perfil from './pages/Perfil/index'
+import Saude from './pages/Saude/index'
 
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -27,6 +30,9 @@ const App = () => {
           <Stack.Screen name="IMC" component={IMC} options={{headerShown: false}}/>
           <Stack.Screen name="Dietas" component={Dietas} options={{headerShown: false}}/>
           <Stack.Screen name="Treinos" component={Treinos} options={{headerShown: false}}/>
+          <Stack.Screen name="Metas" component={Metas} options={{headerShown: false}}/>
+          <Stack.Screen name="Perfil" component={Perfil} options={{headerShown: false}}/>
+          <Stack.Screen name="Saude" component={Saude} options={{headerShown: false}}/>
         </Stack.Navigator>
       </NavigationContainer>
     </AuthProvider>

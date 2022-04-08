@@ -1,54 +1,29 @@
 import React from 'react';
-import { 
-    KeyBoardView, 
-    Title, 
-    Container, 
-    Input, 
-    ButtonSubmit, 
-    TextSubmit,
-} from './styles';
+import {KeyboardAvoidingView, View, StyleSheet} from 'react-native'
 
 function Perfil() {
     return (
-        <KeyBoardView>
-            <Container>
-                <Title>Cadastro</Title>
-                <Input 
-                    placeholderTextColor="#fff"
-                    placeholder="E-mail"
-                />
+        <KeyboardAvoidingView style={styles.profile}>
+            <View style={styles.container}>
                 
-                <Input 
-                    placeholderTextColor="#fff"
-                    placeholder="Senha"
-                    secureTextEntry
-                />
-                <Input 
-                    placeholderTextColor="#fff"
-                    placeholder="Nome"
-                />
-                <Input 
-                    placeholderTextColor="#fff"
-                    placeholder="Idade"
-                />
-                <Input 
-                    placeholderTextColor="#fff"
-                    placeholder="Peso"
-                />
-                <Input 
-                    placeholderTextColor="#fff"
-                    placeholder="Altura"
-                />
-                <Input 
-                    placeholderTextColor="#fff"
-                    placeholder="Tipo físico"
-                />
-                <ButtonSubmit>
-                    <TextSubmit>Cadastrar</TextSubmit>
-                </ButtonSubmit>
-            </Container>
-        </KeyBoardView>
+            </View>
+        </KeyboardAvoidingView>
     )
 }
+
+const styles = StyleSheet.create({
+    profile: {
+      flex: 1,
+      justifyContent: 'center',
+      alignItems: 'center',
+      backgroundColor: 'rgb(90, 88, 212)',
+    },
+    container: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: '90%'
+    }
+});
 
 export default Perfil;

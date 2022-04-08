@@ -1,13 +1,5 @@
-import React, {useState,useEffect} from 'react';
-import { 
-    KeyBoardView, 
-    Title, 
-    Container, 
-    Input, 
-    ButtonSubmit, 
-    TextSubmit,
-    Text
-} from './styles';
+import React, {useState} from 'react';
+import {KeyboardAvoidingView, View, Text,StyleSheet, TextInput, TouchableOpacity} from 'react-native'
 
 function CompletarCadastro({navigation}) {
     const [email, setEmail] = useState('');
@@ -47,52 +39,118 @@ function CompletarCadastro({navigation}) {
     }
     
     return (
-        <KeyBoardView>
-            <Container>
-                <Title>Cadastro</Title>
-
-                <Input 
+        <KeyboardAvoidingView style={styles.completarCadastro}>
+            <View style={styles.container}>
+                <Text style={styles.title}>Cadastro</Text>
+                <TextInput
+                    style={styles.input} 
                     placeholderTextColor="#fff"
                     placeholder="Confirme seu E-mail"
                     onChangeText={(text) => setEmail(text.toLowerCase())}
                 />
-                <Input 
+                <TextInput
+                    style={styles.input} 
                     placeholderTextColor="#fff"
                     placeholder="Nome"
                     onChangeText={(text) => setName(text)}
                 />               
-                <Input 
+                <TextInput
+                    style={styles.input} 
                     placeholderTextColor="#fff"
                     placeholder="Sobrenome"
                     onChangeText={(text) => setSurename(text)}
                 />
-                <Input 
+                <TextInput
+                    style={styles.input} 
                     placeholderTextColor="#fff"
                     placeholder="Idade"
                     keyboardType="numeric"
                     onChangeText={(text) => setAge(text.replace(',','.'))}
                 />
-                <Input 
+                <TextInput
+                    style={styles.input} 
                     placeholderTextColor="#fff"
                     placeholder="Altura (m)"
                     keyboardType="numeric"
                     onChangeText={(text) => setHeight(text.replace(',','.'))}
                 />
-                <Input 
+                <TextInput
+                    style={styles.input} 
                     placeholderTextColor="#fff"
                     placeholder="Peso (kg)"
                     keyboardType="numeric"
                     onChangeText={(text) => setWeight(text.replace(',','.'))}
                 />
-                <ButtonSubmit 
+                <TouchableOpacity 
+                    style={styles.buttonSubmit} 
                     onPress ={()=> sendForm()}
                 >
-                    <TextSubmit>Finalizar</TextSubmit>
-                </ButtonSubmit>
-            </Container>
-        </KeyBoardView>
+                    <Text style={styles.textSubmit} >Finalizar</Text>
+                </TouchableOpacity>
+            </View>
+        </KeyboardAvoidingView>
         
     )
 }
+
+const styles = StyleSheet.create({
+    completarCadastro: {
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: 'rgb(90, 88, 212)'
+    },
+    container: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: '90%'
+    },
+    title: {
+        color: '#fff',
+        fontSize: 26,
+        fontWeight: 'bold',
+        marginBottom: 30,
+        paddingTop: 100,
+        paddingBottom: '5%',
+    },
+    input: {
+        borderWidth: 1,
+        borderColor: 'rgb(90, 69, 161)',
+        borderRadius: 4,
+        borderRadius: 9,
+        marginBottom: 30,
+        // padding: 15px 20px,
+        color: '#fff',
+        fontSize: 20,
+        borderRadius: 9,
+        width: '90%',
+    },
+    buttonSubmit: {
+        backgroundColor: 'rgb(90, 69, 161)',
+        borderRadius: 9,
+        width: '50%',
+        padding: 10,
+        alignItems: 'center',
+        marginBottom: 10,
+    },
+    text: {
+        color: '#fff',
+        fontSize: 10,
+        fontWeight: 'normal',
+        marginBottom: 15
+    },
+    textSubmit: {
+        color: '#fff',
+        fontSize: 18,
+        fontWeight: 'bold',
+    },
+    normalText: {
+        color: '#fff',
+        marginBottom: 7,
+        fontSize: 15,
+        marginTop: 100
+    },
+  });
 
 export default CompletarCadastro;

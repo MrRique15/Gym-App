@@ -1,19 +1,9 @@
 import React, {useState} from 'react';
-import { 
-    KeyBoardView, 
-    Title, 
-    Container, 
-    Input, 
-    ButtonSubmit, 
-    ButtonCreateAccount,
-    TextSubmit,
-    TextCreateAccount,
-    NormalText,
-} from './styles';
+import {KeyboardAvoidingView, View, Text, StyleSheet, TextInput, TouchableOpacity} from 'react-native'
 import Header from '../../components/Header';
 import { useAuth } from '../../server/providers/Auth';
 
-function Singin({navigation}) {
+function Signin({navigation}) {
     const [email, setEmail] = useState(null);
     const [password, setPassword] = useState(null);
 
@@ -52,35 +42,97 @@ function Singin({navigation}) {
     }
 
     return (
-        <KeyBoardView>
-            <Header />
-            <Container>
-                <Title>FIT IN</Title>
-                
-                <Input 
+        <KeyboardAvoidingView style={styles.signin}>
+            <Header/>
+            <View style={styles.container}>
+                <Text style={styles.title}>FIT IN</Text>
+                <TextInput 
+                    style={styles.input}
                     placeholderTextColor="#fff"
                     placeholder="E-mail"
                     onChangeText={(text) => setEmail(text.toLowerCase())}
                 />
-                <Input 
+                <TextInput 
+                    style={styles.input}
                     placeholderTextColor="#fff"
                     placeholder="Senha"
                     onChangeText={(text) => setPassword(text)}
                     secureTextEntry
                 />
-                <ButtonSubmit onPress ={()=> sendForm()}>
-                    <TextSubmit>Entrar</TextSubmit>
-                </ButtonSubmit>
-                <ButtonSubmit>
-                    <TextSubmit>Recuperar Senha</TextSubmit>
-                </ButtonSubmit>
-                <NormalText>Ainda não possui uma conta?</NormalText>
-                <ButtonCreateAccount onPress ={()=> navigation.navigate('Cadastro')}>
-                    <TextCreateAccount>Cadastre-se</TextCreateAccount>
-                </ButtonCreateAccount>
-            </Container>
-        </KeyBoardView>
+                <TouchableOpacity 
+                    style={styles.buttonSubmit}
+                    onPress ={()=> sendForm()}
+                >
+                    <Text style={styles.textSubmit}>Entrar</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.buttonSubmit}>
+                    <Text style={styles.textSubmit}>Recuperar Senha</Text>
+                </TouchableOpacity>
+                <Text style={styles.normalText}>Ainda não possui uma conta?</Text>
+                <TouchableOpacity 
+                    style={styles.buttonSubmit}
+                    onPress ={()=> navigation.navigate('Cadastro')}
+                >
+                    <Text style={styles.textSubmit}>Cadastre-se</Text>
+                </TouchableOpacity>
+            </View>
+        </KeyboardAvoidingView>
     )
 }
 
-export default Singin;
+const styles = StyleSheet.create({
+    signin: {
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: 'rgb(90, 88, 212)'
+    },
+    container: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        paddingBottom: '50%',
+        width: '90%'
+    },
+    title: {
+        color: '#fff',
+        fontSize: 26,
+        fontWeight: '800',
+        marginBottom: 10,
+        paddingTop: 15
+    },
+    input: {
+        borderWidth: 1,
+        borderColor: 'rgb(90, 69, 161)',
+        borderRadius: 4,
+        borderRadius: 9,
+        marginBottom: 30,
+        paddingHorizontal: 20,
+        paddingVertical: 15,
+        color: '#fff',
+        fontSize: 20,
+        borderRadius: 9,
+        width: '90%'
+    },
+    buttonSubmit: {
+        backgroundColor: 'rgb(90, 69, 161)',
+        borderRadius: 9,
+        width: '50%',
+        padding: 10,
+        alignItems: 'center',
+        marginBottom: 10
+    },
+    textSubmit: {
+        color: '#fff',
+        fontSize: 17,
+        fontWeight: 'bold'
+    },
+    normalText: {
+        color: '#fff',
+        marginBottom: 7,
+        fontSize: 15,
+        marginTop: 100
+    }
+  });
+
+export default Signin;
