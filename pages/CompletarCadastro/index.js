@@ -120,11 +120,12 @@ const styles = StyleSheet.create({
         borderRadius: 4,
         borderRadius: 9,
         marginBottom: 30,
-        // padding: 15px 20px,
+        paddingHorizontal: 20,
+        paddingVertical: 10,
         color: '#fff',
         fontSize: 20,
         borderRadius: 9,
-        width: '90%',
+        width: '90%'
     },
     buttonSubmit: {
         backgroundColor: 'rgb(90, 69, 161)',

@@ -3,7 +3,7 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const User = require('./UserSchema');
-const smtp = require('./smtp');
+const nodemailer = require('nodemailer');
 
 const app = express();
 app.use(cors());
@@ -23,14 +23,26 @@ mongoose.connection.on('error', (err) => {
 });
 //-------------------------------------------------------------------------------------------------------
 
+//Email Sender Connection--------------------------------------------------------------------------------
+const transporter = nodemailer.createTransport({
+    host: 'smtp.elasticemail.com',
+    port: 2525,
+    auth: {
+        user: 'ra115408@uem.br',
+        pass: 'A611380C1B13C823A55E88645DCDCFDA03C6'
+    }
+});
+//-------------------------------------------------------------------------------------------------------
 app.post('/cadastro', async (req, res) => {
     if(req.body.email == '' || req.body.password == '' || req.body.confirmpassword == ''){
         res.send(JSON.stringify({error:'error',message:'Preencha todos os Campos!'}));
     }else{ 
         let response = await User.findOne({email:req.body.email});
-        
+
         if(req.body.password != req.body.confirmpassword){
             res.send(JSON.stringify({error:'error',message:'As senhas não são iguais!'}));
+        }else if(req.body.email.indexOf('@') == -1){
+            res.send(JSON.stringify({error:'error',message:'Email inválido!'}));
         }else if (response == null){
             const user = await User.create({ 
                 name: '',
@@ -105,17 +117,13 @@ app.post('/sendCode', async (req, res) => {
             res.send(JSON.stringify({error:'error',message:'Usuário não encontrado!'}));
         }else{
             let passCode = Math.floor(Math.random() * (999999 - 100000) + 100000);
-            smtp.Email.send({
-                Host : "smtp.elasticemail.com",
-                Username : "ra115408@uem.br",
-                Password : "A611380C1B13C823A55E88645DCDCFDA03C6",
-                To : response.email,
-                From : "ra115408@uem.br",
-                Subject : "Fit In - Recuperação de Senha",
-                Body : "Seu código de recuperação é: "+passCode+"\nUtilize o mesmo na aba Recuperar Senha, para redefinir sua senha no aplicativo.\n\nAtenciosamente,\nEquipe Fit In"
-            }).then(
-              message => alert(message)
-            );
+            let sended = await transporter.sendMail({
+                from: 'ra115408@uem.br',
+                to: response.email,
+                subject: "Fit In - Recuperação de Senha",
+                html: `<h1>Seu código de recuperação é:</h1><h2>${passCode}</h2><br/><h4>Utilize o mesmo na aba Recuperar Senha, para redefinir sua senha no aplicativo.<br/>Atenciosamente,<br/>Equipe Fit In"</h4>`
+            });
+            console.log(sended);
             User.updateOne({email:req.body.email},{
                 code: passCode
             }, function(err, result){
@@ -155,7 +163,7 @@ app.post('/recPassword', async (req, res) => {
 
         if (response == null){
             res.send(JSON.stringify({error:'error',message:'Usuário não encontrado!'}));
-        }else if(req.body.password != req.body.password2){
+        }else if(req.body.password != req.body.confirmPassword){
             res.send(JSON.stringify({error:'error',message:'As senhas não são iguais!'}));
         }else{
             User.updateOne({email:req.body.email},{

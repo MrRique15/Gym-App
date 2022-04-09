@@ -19,6 +19,7 @@ function RecuperarSenha2({navigation}) {
             body: JSON.stringify({
                 password: password,
                 confirmPassword: password2,
+                email: user.email,
             })
         });
 
@@ -41,13 +42,13 @@ function RecuperarSenha2({navigation}) {
                     style={styles.input} 
                     placeholderTextColor="#fff"
                     placeholder="Nova Senha"
-                    onChangeText={(text) => setPassword(text)}
+                    onChangeText={(text) => setPassword(parseInt(text))}
                 />
                 <TextInput
                     style={styles.input} 
                     placeholderTextColor="#fff"
                     placeholder="Confirmar Senha"
-                    onChangeText={(text) => setPassword2(text)}
+                    onChangeText={(text) => setPassword2(parseInt(text))}
                 />
                 <TouchableOpacity 
                     style={styles.buttonSubmit} 
@@ -88,11 +89,12 @@ const styles = StyleSheet.create({
         borderRadius: 4,
         borderRadius: 9,
         marginBottom: 30,
-        // padding: 15px 20px,
+        paddingHorizontal: 20,
+        paddingVertical: 10,
         color: '#fff',
         fontSize: 20,
         borderRadius: 9,
-        width: '90%',
+        width: '90%'
     },
     buttonSubmit: {
         backgroundColor: 'rgb(90, 69, 161)',
