@@ -9,9 +9,7 @@ function IMC() {
 
   function calcular(){
     if(peso > 0 && altura > 0){
-      console.log(peso, altura);
       let imc = peso / (altura * altura);
-      console.log(imc);
       if(imc < 16){
         alert('Magreza Grave');
         setResultado("Magreza Grave");

@@ -119,25 +119,25 @@ app.post('/sendCode', async (req, res) => {
             res.send(JSON.stringify({error:'error',message:'Usuário não encontrado!'}));
         }else{
             let passCode = Math.floor(Math.random() * (999999 - 100000) + 100000);
-            let sended = await transporter.sendMail({
-                from: 'ra115408@uem.br',
-                to: response.email,
-                subject: "Fit In - Recuperação de Senha",
-                html: `<h1>Seu código de recuperação é:</h1><h2>${passCode}</h2><br/><h4>Utilize o mesmo na aba Recuperar Senha, para redefinir sua senha no aplicativo.<br/>Atenciosamente,<br/>Equipe Fit In"</h4>`
-            });
-            if(sended.messageId){
-                User.updateOne({email:req.body.email},{
-                    code: passCode
-                }, function(err, result){
-                    if(err){
-                        res.send(JSON.stringify({error:'error',message:'Erro ao enviar código!'}));
-                    }else{
-                        res.send(JSON.stringify({error:'codecreated',message:'Código enviado com sucesso!'}));
-                    }
+            try{
+                await transporter.sendMail({
+                    from: 'ra115408@uem.br',
+                    to: response.email,
+                    subject: "Fit In - Recuperação de Senha",
+                    html: `<h1>Seu código de recuperação é:</h1><h2>${passCode}</h2><br/><h4>Utilize o mesmo na aba Recuperar Senha, para redefinir sua senha no aplicativo.<br/>Atenciosamente,<br/>Equipe Fit In"</h4>`
                 });
-            }else{
-                res.send(JSON.stringify({error:'error',message:'Erro ao enviar código!'}));
+            }catch(err){
+                res.send(JSON.stringify({error:'error',message:'Erro ao enviar o código de recuperação!'}));
             }
+            User.updateOne({email:req.body.email},{
+                code: passCode
+            }, function(err, result){
+                if(err){
+                    res.send(JSON.stringify({error:'error',message:'Erro ao enviar código!'}));
+                }else{
+                    res.send(JSON.stringify({error:'codecreated',message:'Código enviado com sucesso!'}));
+                }
+            });
         }
     }
 });
