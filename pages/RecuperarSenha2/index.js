@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import {KeyboardAvoidingView, View, Text,StyleSheet, TextInput, TouchableOpacity} from 'react-native'
+import { useAuth } from '../../server/providers/Auth';
 
 function RecuperarSenha2({navigation}) {
     const [password, setPassword] = useState('');
@@ -9,7 +10,7 @@ function RecuperarSenha2({navigation}) {
 
     async function recPassword()
     {
-        let response = await fetch('http://26.64.165.191:3000/recPassword',{
+        let response = await fetch('http://192.168.0.91:3000/recPassword',{
             method: 'POST',
             headers: {
                 Accept: 'application/json',

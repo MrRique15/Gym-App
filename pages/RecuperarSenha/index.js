@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import {KeyboardAvoidingView, View, Text,StyleSheet, TextInput, TouchableOpacity} from 'react-native'
+import { useAuth } from '../../server/providers/Auth';
 
 function RecuperarSenha({navigation}) {
     const [email, setEmail] = useState('');
@@ -9,7 +10,7 @@ function RecuperarSenha({navigation}) {
 
     async function sendCode()
     {
-        let response = await fetch('http://26.64.165.191:3000/sendCode',{
+        let response = await fetch('http://192.168.0.91:3000/sendCode',{
             method: 'POST',
             headers: {
                 Accept: 'application/json',
@@ -29,7 +30,7 @@ function RecuperarSenha({navigation}) {
     }
     async function validateCode()
     {
-        let response = await fetch('http://26.64.165.191:3000/validateCode',{
+        let response = await fetch('http://192.168.0.91:3000/validateCode',{
             method: 'POST',
             headers: {
                 Accept: 'application/json',
@@ -113,9 +114,9 @@ const styles = StyleSheet.create({
     },
     title: {
         color: '#fff',
-        fontSize: 26,
+        fontSize: 23,
         fontWeight: 'bold',
-        marginBottom: 30,
+        marginBottom: 8,
         paddingTop: 100,
         paddingBottom: '5%',
     },
@@ -125,11 +126,12 @@ const styles = StyleSheet.create({
         borderRadius: 4,
         borderRadius: 9,
         marginBottom: 30,
-        // padding: 15px 20px,
+        paddingHorizontal: 20,
+        paddingVertical: 10,
         color: '#fff',
         fontSize: 20,
         borderRadius: 9,
-        width: '90%',
+        width: '90%'
     },
     buttonSubmit: {
         backgroundColor: 'rgb(90, 69, 161)',

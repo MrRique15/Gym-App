@@ -10,6 +10,8 @@ import Treinos from './pages/Treinos/index'
 import Metas from './pages/Metas/index'
 import Perfil from './pages/Perfil/index'
 import Saude from './pages/Saude/index'
+import RecuperarSenha from './pages/RecuperarSenha/index';
+import RecuperarSenha2 from './pages/RecuperarSenha2/index';
 
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
