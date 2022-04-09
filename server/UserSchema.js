@@ -29,12 +29,16 @@ const UserSchema = new mongoose.Schema({
         type: Number,
         require: true
     },
+    code: {
+        type: Number,
+        require: true
+    }
 }, {
     timestamps: true,
     toJSON: { virtuals: true },
     toObject: { virtuals: true }
 });
 
-UserSchema.index({ name: 1, surename: 1, email: 1, password: 1, age: 1, high: 1, weight: 1 }, { unique: true });
+UserSchema.index({ name: 1, surename: 1, email: 1, password: 1, age: 1, high: 1, weight: 1, code: 1 }, { unique: true });
 
 module.exports = mongoose.model('user', UserSchema);

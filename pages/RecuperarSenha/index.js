@@ -1,17 +1,15 @@
 import React, {useState} from 'react';
 import {KeyboardAvoidingView, View, Text,StyleSheet, TextInput, TouchableOpacity} from 'react-native'
 
-function CompletarCadastro({navigation}) {
+function RecuperarSenha({navigation}) {
     const [email, setEmail] = useState('');
-    const [name, setName] = useState('');
-    const [surename, setSurename] = useState('');
-    const [age, setAge] = useState('');
-    const [height, setHeight] = useState('');
-    const [weight, setWeight] = useState('');
+    const [code, setCode] = useState('');
 
-    async function sendForm()
+    const { setUser } = useAuth();
+
+    async function sendCode()
     {
-        let response = await fetch('http://26.64.165.191:3000/completarcadastro',{
+        let response = await fetch('http://26.64.165.191:3000/sendCode',{
             method: 'POST',
             headers: {
                 Accept: 'application/json',
@@ -19,19 +17,39 @@ function CompletarCadastro({navigation}) {
             },
             body: JSON.stringify({
                 email: email,
-                name: name,
-                surename: surename,
-                age: age,
-                height: height,
-                weight: weight
             })
         });
 
         let json = await response.json();
-        if(json.error == 'cadastrocompleto'){
+        if(json.error == 'codecreated'){
             alert(json.message);
+        }else if(json.error == 'error'){
+            alert(json.message);
+        }
+    }
+    async function validateCode()
+    {
+        let response = await fetch('http://26.64.165.191:3000/validateCode',{
+            method: 'POST',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                email: email,
+                code: code,
+            })
+        });
+
+        let json = await response.json();
+        if(json.error == 'codevalidated'){
+            setUser({
+                name: '',
+                surename: '',
+                email: json.email,
+            });
             setTimeout(() => {
-                navigation.navigate('Menu');
+                navigation.navigate('RecuperarSenha2');
             }, 200);
         }else if(json.error == 'error'){
             alert(json.message);
@@ -39,53 +57,40 @@ function CompletarCadastro({navigation}) {
     }
     
     return (
-        <KeyboardAvoidingView style={styles.completarCadastro}>
+        <KeyboardAvoidingView style={styles.recupPassword}>
             <View style={styles.container}>
-                <Text style={styles.title}>Cadastro</Text>
+                <Text style={styles.title}>Obter Código de Recuperação</Text>
                 <TextInput
                     style={styles.input} 
                     placeholderTextColor="#fff"
-                    placeholder="Confirme seu E-mail"
+                    placeholder="E-mail"
+                    onChangeText={(text) => setEmail(text.toLowerCase())}
+                />
+                <TouchableOpacity 
+                    style={styles.buttonSubmit} 
+                    onPress ={()=> sendCode()}
+                >
+                    <Text style={styles.textSubmit}>Obter Código</Text>
+                </TouchableOpacity>
+
+                <Text style={styles.title}>Já Possui um código?</Text>
+                <TextInput
+                    style={styles.input} 
+                    placeholderTextColor="#fff"
+                    placeholder="E-mail"
                     onChangeText={(text) => setEmail(text.toLowerCase())}
                 />
                 <TextInput
                     style={styles.input} 
                     placeholderTextColor="#fff"
-                    placeholder="Nome"
-                    onChangeText={(text) => setName(text)}
-                />               
-                <TextInput
-                    style={styles.input} 
-                    placeholderTextColor="#fff"
-                    placeholder="Sobrenome"
-                    onChangeText={(text) => setSurename(text)}
-                />
-                <TextInput
-                    style={styles.input} 
-                    placeholderTextColor="#fff"
-                    placeholder="Idade"
-                    keyboardType="numeric"
-                    onChangeText={(text) => setAge(text.replace(',','.'))}
-                />
-                <TextInput
-                    style={styles.input} 
-                    placeholderTextColor="#fff"
-                    placeholder="Altura (m)"
-                    keyboardType="numeric"
-                    onChangeText={(text) => setHeight(text.replace(',','.'))}
-                />
-                <TextInput
-                    style={styles.input} 
-                    placeholderTextColor="#fff"
-                    placeholder="Peso (kg)"
-                    keyboardType="numeric"
-                    onChangeText={(text) => setWeight(text.replace(',','.'))}
+                    placeholder="Código"
+                    onChangeText={(text) => setCode(parseInt(text))}
                 />
                 <TouchableOpacity 
                     style={styles.buttonSubmit} 
-                    onPress ={()=> sendForm()}
+                    onPress ={()=> validateCode()}
                 >
-                    <Text style={styles.textSubmit} >Finalizar</Text>
+                    <Text style={styles.textSubmit}>Validar Código</Text>
                 </TouchableOpacity>
             </View>
         </KeyboardAvoidingView>
@@ -94,7 +99,7 @@ function CompletarCadastro({navigation}) {
 }
 
 const styles = StyleSheet.create({
-    completarCadastro: {
+    recupPassword: {
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
@@ -153,4 +158,4 @@ const styles = StyleSheet.create({
     },
   });
 
-export default CompletarCadastro;
+export default RecuperarSenha;

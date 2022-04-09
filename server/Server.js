@@ -3,6 +3,7 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const User = require('./UserSchema');
+const smtp = require('./smtp');
 
 const app = express();
 app.use(cors());
@@ -37,7 +38,8 @@ app.post('/cadastro', async (req, res) => {
             password: req.body.password,
             age: 0,
             height: 0.00,
-            weight: 0.00
+            weight: 0.00,
+            code: 000000
         });
         res.send(JSON.stringify({error:'cadastrar',message:'Cadastro realizado com sucesso!'}));
     }else{
@@ -72,12 +74,81 @@ app.post('/completarcadastro', async (req, res) => {
             surename: req.body.surename,
             age: parseInt(req.body.age),
             weight: parseFloat(req.body.weight),
-            height: parseFloat(req.body.height)
+            height: parseFloat(req.body.height),
+            code: 000000
         }, function(err, result){
             if(err){
                 res.send(JSON.stringify({error:'error',message:'Erro ao completar Cadastro!'}));
             }else{
                 res.send(JSON.stringify({error:'cadastrocompleto',message:'Cadastro finalizado com sucesso!'}));
+            }
+        });
+    }
+});
+
+app.post('/sendCode', async (req, res) => {
+    let response = await User.findOne({email:req.body.email});
+    if (response == null){
+        res.send(JSON.stringify({error:'error',message:'Usuário não encontrado!'}));
+    }else if(req.body.email == ''){
+        res.send(JSON.stringify({error:'error',message:'Preencha um email!'}));
+    }else{
+        let passCode = Math.floor(Math.random() * (999999 - 100000) + 100000);
+        smtp.Email.send({
+            Host : "smtp.elasticemail.com",
+            Username : "ra115408@uem.br",
+            Password : "A611380C1B13C823A55E88645DCDCFDA03C6",
+            To : response.email,
+            From : "ra115408@uem.br",
+            Subject : "Fit In - Recuperação de Senha",
+            Body : "Seu código de recuperação é: "+passCode+"\nUtilize o mesmo na aba Recuperar Senha, para redefinir sua senha no aplicativo.\n\nAtenciosamente,\nEquipe Fit In"
+        }).then(
+          message => alert(message)
+        );
+        User.updateOne({email:req.body.email},{
+            code: passCode
+        }, function(err, result){
+            if(err){
+                res.send(JSON.stringify({error:'error',message:'Erro ao enviar código!'}));
+            }else{
+                res.send(JSON.stringify({error:'codecreated',message:'Código enviado com sucesso!'}));
+            }
+        });
+    }
+});
+
+app.post('/validateCode', async (req, res) => {
+    let response = await User.findOne({email:req.body.email});
+    if (response == null){
+        res.send(JSON.stringify({error:'error',message:'Usuário não Encontrado!'}));
+    }else if(req.body.email == '' || req.body.code == ''){
+        res.send(JSON.stringify({error:'error',message:'Preencha email e código!'}));
+    }else{
+        if(parseInt(response.code) == parseInt(req.body.code)){
+            res.send(JSON.stringify({error:'codevalidated',message:'Código correto!',email:response.email}));
+        }else{
+            res.send(JSON.stringify({error:'error',message:'Código inválido!'}));
+        }
+    }
+});
+
+app.post('/recPassword', async (req, res) => {
+    let response = await User.findOne({email:req.body.email});
+    if (response == null){
+        res.send(JSON.stringify({error:'error',message:'Usuário não encontrado!'}));
+    }else if(req.body.password == '' || req.body.password2 == ''){
+        res.send(JSON.stringify({error:'error',message:'Preencha todos os campos!'}));
+    }else if(req.body.password != req.body.password2){
+        res.send(JSON.stringify({error:'error',message:'As senhas não são iguais!'}));
+    }else{
+        User.updateOne({email:req.body.email},{
+            password: req.body.password,
+            code: 000000
+        }, function(err, result){
+            if(err){
+                res.send(JSON.stringify({error:'error',message:'Erro ao redefinir senha!'}));
+            }else{
+                res.send(JSON.stringify({error:'passchanged',message:'Senha redefinida com sucesso!'}));
             }
         });
     }

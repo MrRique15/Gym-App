@@ -11,7 +11,7 @@ function Signin({navigation}) {
 
     async function sendForm()
     {
-        let response = await fetch('http://192.168.0.10:3000/login',{
+        let response = await fetch('http://26.64.165.191:3000/login',{
             method: 'POST',
             headers: {
                 Accept: 'application/json',
@@ -46,12 +46,14 @@ function Signin({navigation}) {
             <Header/>
             <View style={styles.container}>
                 <Text style={styles.title}>FIT IN</Text>
+
                 <TextInput 
                     style={styles.input}
                     placeholderTextColor="#fff"
                     placeholder="E-mail"
                     onChangeText={(text) => setEmail(text.toLowerCase())}
                 />
+
                 <TextInput 
                     style={styles.input}
                     placeholderTextColor="#fff"
@@ -59,16 +61,23 @@ function Signin({navigation}) {
                     onChangeText={(text) => setPassword(text)}
                     secureTextEntry
                 />
+
                 <TouchableOpacity 
                     style={styles.buttonSubmit}
                     onPress ={()=> sendForm()}
                 >
                     <Text style={styles.textSubmit}>Entrar</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.buttonSubmit}>
+
+                <TouchableOpacity 
+                    style={styles.buttonSubmit}
+                    onPress ={()=> navigation.navigate('RecuperarSenha')}
+                >
                     <Text style={styles.textSubmit}>Recuperar Senha</Text>
                 </TouchableOpacity>
+
                 <Text style={styles.normalText}>Ainda não possui uma conta?</Text>
+
                 <TouchableOpacity 
                     style={styles.buttonSubmit}
                     onPress ={()=> navigation.navigate('Cadastro')}

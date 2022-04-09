@@ -27,6 +27,8 @@ const App = () => {
           <Stack.Screen name="Menu" component={Menu} options={{headerShown: false}}/>
           <Stack.Screen name="CadastroConcluido" component={CadastroConcluido} options={{headerShown: false}}/>
           <Stack.Screen name="CompletarCadastro" component={CompletarCadastro} options={{headerShown: false}}/>
+          <Stack.Screen name="RecuperarSenha" component={RecuperarSenha} options={{headerShown: false}}/>
+          <Stack.Screen name="RecuperarSenha2" component={RecuperarSenha2} options={{headerShown: false}}/>
           <Stack.Screen name="IMC" component={IMC} options={{headerShown: false}}/>
           <Stack.Screen name="Dietas" component={Dietas} options={{headerShown: false}}/>
           <Stack.Screen name="Treinos" component={Treinos} options={{headerShown: false}}/>

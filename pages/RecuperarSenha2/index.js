@@ -1,37 +1,31 @@
 import React, {useState} from 'react';
 import {KeyboardAvoidingView, View, Text,StyleSheet, TextInput, TouchableOpacity} from 'react-native'
 
-function CompletarCadastro({navigation}) {
-    const [email, setEmail] = useState('');
-    const [name, setName] = useState('');
-    const [surename, setSurename] = useState('');
-    const [age, setAge] = useState('');
-    const [height, setHeight] = useState('');
-    const [weight, setWeight] = useState('');
+function RecuperarSenha2({navigation}) {
+    const [password, setPassword] = useState('');
+    const [password2, setPassword2] = useState('');
 
-    async function sendForm()
+    const { user } = useAuth();
+
+    async function recPassword()
     {
-        let response = await fetch('http://26.64.165.191:3000/completarcadastro',{
+        let response = await fetch('http://26.64.165.191:3000/recPassword',{
             method: 'POST',
             headers: {
                 Accept: 'application/json',
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                email: email,
-                name: name,
-                surename: surename,
-                age: age,
-                height: height,
-                weight: weight
+                password: password,
+                confirmPassword: password2,
             })
         });
 
         let json = await response.json();
-        if(json.error == 'cadastrocompleto'){
+        if(json.error == 'passchanged'){
             alert(json.message);
             setTimeout(() => {
-                navigation.navigate('Menu');
+                navigation.navigate('Signin');
             }, 200);
         }else if(json.error == 'error'){
             alert(json.message);
@@ -39,53 +33,26 @@ function CompletarCadastro({navigation}) {
     }
     
     return (
-        <KeyboardAvoidingView style={styles.completarCadastro}>
+        <KeyboardAvoidingView style={styles.recupPassword2}>
             <View style={styles.container}>
-                <Text style={styles.title}>Cadastro</Text>
+                <Text style={styles.title}>Redefinir Senha</Text>
                 <TextInput
                     style={styles.input} 
                     placeholderTextColor="#fff"
-                    placeholder="Confirme seu E-mail"
-                    onChangeText={(text) => setEmail(text.toLowerCase())}
+                    placeholder="Nova Senha"
+                    onChangeText={(text) => setPassword(text)}
                 />
                 <TextInput
                     style={styles.input} 
                     placeholderTextColor="#fff"
-                    placeholder="Nome"
-                    onChangeText={(text) => setName(text)}
-                />               
-                <TextInput
-                    style={styles.input} 
-                    placeholderTextColor="#fff"
-                    placeholder="Sobrenome"
-                    onChangeText={(text) => setSurename(text)}
-                />
-                <TextInput
-                    style={styles.input} 
-                    placeholderTextColor="#fff"
-                    placeholder="Idade"
-                    keyboardType="numeric"
-                    onChangeText={(text) => setAge(text.replace(',','.'))}
-                />
-                <TextInput
-                    style={styles.input} 
-                    placeholderTextColor="#fff"
-                    placeholder="Altura (m)"
-                    keyboardType="numeric"
-                    onChangeText={(text) => setHeight(text.replace(',','.'))}
-                />
-                <TextInput
-                    style={styles.input} 
-                    placeholderTextColor="#fff"
-                    placeholder="Peso (kg)"
-                    keyboardType="numeric"
-                    onChangeText={(text) => setWeight(text.replace(',','.'))}
+                    placeholder="Confirmar Senha"
+                    onChangeText={(text) => setPassword2(text)}
                 />
                 <TouchableOpacity 
                     style={styles.buttonSubmit} 
-                    onPress ={()=> sendForm()}
+                    onPress ={()=> recPassword()}
                 >
-                    <Text style={styles.textSubmit} >Finalizar</Text>
+                    <Text style={styles.textSubmit}>Confirmar</Text>
                 </TouchableOpacity>
             </View>
         </KeyboardAvoidingView>
@@ -94,7 +61,7 @@ function CompletarCadastro({navigation}) {
 }
 
 const styles = StyleSheet.create({
-    completarCadastro: {
+    recupPassword2: {
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
@@ -153,4 +120,4 @@ const styles = StyleSheet.create({
     },
   });
 
-export default CompletarCadastro;
+export default RecuperarSenha2;
