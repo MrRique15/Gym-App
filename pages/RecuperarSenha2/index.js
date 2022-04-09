@@ -42,12 +42,14 @@ function RecuperarSenha2({navigation}) {
                     style={styles.input} 
                     placeholderTextColor="#fff"
                     placeholder="Nova Senha"
+                    secureTextEntry
                     onChangeText={(text) => setPassword(parseInt(text))}
                 />
                 <TextInput
                     style={styles.input} 
                     placeholderTextColor="#fff"
                     placeholder="Confirmar Senha"
+                    secureTextEntry
                     onChangeText={(text) => setPassword2(parseInt(text))}
                 />
                 <TouchableOpacity 

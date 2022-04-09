@@ -43,6 +43,8 @@ app.post('/cadastro', async (req, res) => {
             res.send(JSON.stringify({error:'error',message:'As senhas não são iguais!'}));
         }else if(req.body.email.indexOf('@') == -1){
             res.send(JSON.stringify({error:'error',message:'Email inválido!'}));
+        }else if(req.body.password.length < 6){
+            res.send(JSON.stringify({error:'error',message:'A senha deve ter no mínimo 6 caracteres!'}));
         }else if (response == null){
             const user = await User.create({ 
                 name: '',
@@ -123,16 +125,19 @@ app.post('/sendCode', async (req, res) => {
                 subject: "Fit In - Recuperação de Senha",
                 html: `<h1>Seu código de recuperação é:</h1><h2>${passCode}</h2><br/><h4>Utilize o mesmo na aba Recuperar Senha, para redefinir sua senha no aplicativo.<br/>Atenciosamente,<br/>Equipe Fit In"</h4>`
             });
-            console.log(sended);
-            User.updateOne({email:req.body.email},{
-                code: passCode
-            }, function(err, result){
-                if(err){
-                    res.send(JSON.stringify({error:'error',message:'Erro ao enviar código!'}));
-                }else{
-                    res.send(JSON.stringify({error:'codecreated',message:'Código enviado com sucesso!'}));
-                }
-            });
+            if(sended.messageId){
+                User.updateOne({email:req.body.email},{
+                    code: passCode
+                }, function(err, result){
+                    if(err){
+                        res.send(JSON.stringify({error:'error',message:'Erro ao enviar código!'}));
+                    }else{
+                        res.send(JSON.stringify({error:'codecreated',message:'Código enviado com sucesso!'}));
+                    }
+                });
+            }else{
+                res.send(JSON.stringify({error:'error',message:'Erro ao enviar código!'}));
+            }
         }
     }
 });
