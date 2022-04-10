@@ -12,6 +12,7 @@ import Perfil from './pages/Perfil/index'
 import Saude from './pages/Saude/index'
 import RecuperarSenha from './pages/RecuperarSenha/index';
 import RecuperarSenha2 from './pages/RecuperarSenha2/index';
+import Exercicios from './pages/Exercicios/index';
 
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -37,6 +38,7 @@ const App = () => {
           <Stack.Screen name="Metas" component={Metas} options={{headerShown: false}}/>
           <Stack.Screen name="Perfil" component={Perfil} options={{headerShown: false}}/>
           <Stack.Screen name="Saude" component={Saude} options={{headerShown: false}}/>
+          <Stack.Screen name="Exercicios" component={Exercicios} options={{headerShown: false}}/>
         </Stack.Navigator>
       </NavigationContainer>
     </AuthProvider>

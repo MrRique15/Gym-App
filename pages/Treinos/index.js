@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, View, Image, Text, TouchableOpacity} from 'react-native';
 
-export default function Treinos(){
+export default function Treinos({navigation}){
     return(
         <View style={styles.container}>
             <View style={styles.title}>
@@ -11,7 +11,9 @@ export default function Treinos(){
                 />
             </View>
             <View style={styles.barraBotoes}>
-                <TouchableOpacity>
+                <TouchableOpacity
+                onPress={() => navigation.navigate('Exercicios')}
+                >
                     <Image
                         source={require('../../assets/images/add.png')}
                         style={{resizeMode: 'contain',
@@ -56,5 +58,5 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         padding: 10,
         backgroundColor: '#0282ab'
-    }
+    },
 });
