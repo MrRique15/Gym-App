@@ -48,6 +48,7 @@ const transporter = nodemailer.createTransport({
     }
 });
 //-------------------------------------------------------------------------------------------------------
+
 app.post('/cadastro', async (req, res) => {
     if(req.body.email == '' || req.body.password == '' || req.body.confirmpassword == ''){
         res.send(JSON.stringify({error:'error',message:'Preencha todos os Campos!'}));
