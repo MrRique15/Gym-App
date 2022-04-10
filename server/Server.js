@@ -10,6 +10,21 @@ app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
+// Errors Exception to not Crash ------------------------------------------------------------------------
+process.on('uncaughtException', (error, origin) => {
+    console.log('----- Uncaught exception -----');
+    console.log(error);
+    console.log('----- Exception origin -----');
+    console.log(origin);
+});
+process.on('unhandledRejection', (reason, promise) => {
+    console.log('----- Unhandled Rejection at -----');
+    console.log(promise);
+    console.log('----- Reason -----');
+    console.log(reason);
+});
+//-------------------------------------------------------------------------------------------------------
+
 // Connect to MongoDB -----------------------------------------------------------------------------------
 const mongoUri = "mongodb+srv://root:admin@gymapp.hj2zp.mongodb.net/gymapp?retryWrites=true&w=majority";
 mongoose.connect(mongoUri, {
@@ -54,7 +69,7 @@ app.post('/cadastro', async (req, res) => {
                 age: 0,
                 height: 0.00,
                 weight: 0.00,
-                code: 000000
+                code: 0
             });
             res.send(JSON.stringify({error:'cadastrar',message:'Cadastro realizado com sucesso!'}));
         }else{
@@ -97,7 +112,7 @@ app.post('/completarcadastro', async (req, res) => {
                 age: parseInt(req.body.age),
                 weight: parseFloat(req.body.weight),
                 height: parseFloat(req.body.height),
-                code: 000000
+                code: 0
             }, function(err, result){
                 if(err){
                     res.send(JSON.stringify({error:'error',message:'Erro ao completar Cadastro!'}));
@@ -124,7 +139,7 @@ app.post('/sendCode', async (req, res) => {
                     from: 'ra115408@uem.br',
                     to: response.email,
                     subject: "Fit In - Recuperação de Senha",
-                    html: `<h1>Seu código de recuperação é:</h1><h2>${passCode}</h2><br/><h4>Utilize o mesmo na aba Recuperar Senha, para redefinir sua senha no aplicativo.<br/>Atenciosamente,<br/>Equipe Fit In"</h4>`
+                    html: `<h1>Seu código de recuperação é:</h1><h2>${passCode}</h2><h4>Utilize o mesmo na aba Recuperar Senha, para redefinir sua senha no aplicativo.<br/>Atenciosamente,<br/>Equipe Fit In</h4>`
                 });
             }catch(err){
                 res.send(JSON.stringify({error:'error',message:'Erro ao enviar o código de recuperação!'}));
@@ -173,7 +188,7 @@ app.post('/recPassword', async (req, res) => {
         }else{
             User.updateOne({email:req.body.email},{
                 password: req.body.password,
-                code: 000000
+                code: 0
             }, function(err, result){
                 if(err){
                     res.send(JSON.stringify({error:'error',message:'Erro ao redefinir senha!'}));
