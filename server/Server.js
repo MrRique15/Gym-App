@@ -47,6 +47,7 @@ const transporter = nodemailer.createTransport({
         pass: 'A611380C1B13C823A55E88645DCDCFDA03C6'
     }
 });
+const emailFrom = {email: 'ra115408@uem.br'};
 //-------------------------------------------------------------------------------------------------------
 
 app.post('/cadastro', async (req, res) => {
@@ -62,17 +63,28 @@ app.post('/cadastro', async (req, res) => {
         }else if(req.body.password.length < 6){
             res.send(JSON.stringify({error:'error',message:'A senha deve ter no mínimo 6 caracteres!'}));
         }else if (response == null){
-            const user = await User.create({ 
-                name: '',
-                surename: '',
-                email: req.body.email,
-                password: req.body.password,
-                age: 0,
-                height: 0.00,
-                weight: 0.00,
-                code: 0
+            let confirmCode = Math.floor(Math.random() * (999999 - 100000) + 100000);
+            let confirmationSended = await transporter.sendMail({
+                from: emailFrom.email,
+                to: req.body.email,
+                subject: "Fit In - Confirmação de Cadastro",
+                html: `<h1>Seu código de confirmação é:</h1><h2>${confirmCode}</h2><h4>Utilize o mesmo para concluir seu cadastro em nosso aplicativo.<br;>Para concluir seu cadastro, basta realizar login no aplicativo com seu e-mail e senha, e preencher as informações restantes.<br/>Atenciosamente,<br/>Equipe Fit In</h4>`
             });
-            res.send(JSON.stringify({error:'cadastrar',message:'Cadastro realizado com sucesso!'}));
+            if(confirmationSended){
+                const user = await User.create({ 
+                    name: '',
+                    surename: '',
+                    email: req.body.email,
+                    password: req.body.password,
+                    age: 0,
+                    height: 0.00,
+                    weight: 0.00,
+                    code: confirmCode
+                });
+                res.send(JSON.stringify({error:'cadastrar',message:'Cadastro realizado com sucesso!'}));
+            }else{
+                res.send(JSON.stringify({error:'error',message:'E-mail inválido!'}));
+            }
         }else{
             res.send(JSON.stringify({error:'error',message:'Este e-mail já está em uso!'}));
         }
@@ -99,13 +111,13 @@ app.post('/login', async (req, res) => {
 });
 
 app.post('/completarcadastro', async (req, res) => {
-    if(req.body.name == '' || req.body.surename == '' || req.body.age == '' || req.body.weight == '' || req.body.height == ''){
+    if(req.body.code == '' || req.body.name == '' || req.body.surename == '' || req.body.age == '' || req.body.weight == '' || req.body.height == ''){
         res.send(JSON.stringify({error:'error',message:'Preencha todos os Campos!'}));
     }else{
         let response = await User.findOne({email:req.body.email});
 
-        if (response == null){
-            res.send(JSON.stringify({error:'error',message:'Usuário não encontrado!'}));
+        if (response.code != req.body.code){
+            res.send(JSON.stringify({error:'error',message:'Código de confirmação incorreto!'}));
         }else{
             User.updateOne({email:req.body.email},{
                 name: req.body.name,
@@ -135,25 +147,25 @@ app.post('/sendCode', async (req, res) => {
             res.send(JSON.stringify({error:'error',message:'Usuário não encontrado!'}));
         }else{
             let passCode = Math.floor(Math.random() * (999999 - 100000) + 100000);
-            try{
-                await transporter.sendMail({
-                    from: 'ra115408@uem.br',
-                    to: response.email,
-                    subject: "Fit In - Recuperação de Senha",
-                    html: `<h1>Seu código de recuperação é:</h1><h2>${passCode}</h2><h4>Utilize o mesmo na aba Recuperar Senha, para redefinir sua senha no aplicativo.<br/>Atenciosamente,<br/>Equipe Fit In</h4>`
-                });
-            }catch(err){
-                res.send(JSON.stringify({error:'error',message:'Erro ao enviar o código de recuperação!'}));
-            }
-            User.updateOne({email:req.body.email},{
-                code: passCode
-            }, function(err, result){
-                if(err){
-                    res.send(JSON.stringify({error:'error',message:'Erro ao enviar código!'}));
-                }else{
-                    res.send(JSON.stringify({error:'codecreated',message:'Código enviado com sucesso!'}));
-                }
+            let emailSended = await transporter.sendMail({
+                from: emailFrom.email,
+                to: response.email,
+                subject: "Fit In - Recuperação de Senha",
+                html: `<h1>Seu código de recuperação é:</h1><h2>${passCode}</h2><h4>Utilize o mesmo na aba Recuperar Senha, para redefinir sua senha no aplicativo.<br/>Atenciosamente,<br/>Equipe Fit In</h4>`
             });
+            if(emailSended){
+                User.updateOne({email:req.body.email},{
+                    code: passCode
+                }, function(err, result){
+                    if(err){
+                        res.send(JSON.stringify({error:'error',message:'Erro ao enviar código!'}));
+                    }else{
+                        res.send(JSON.stringify({error:'codecreated',message:'Código enviado com sucesso!'}));
+                    }
+                });
+            }else{
+                res.send(JSON.stringify({error:'error',message:'Erro ao enviar código!'}));
+            }
         }
     }
 });

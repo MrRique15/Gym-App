@@ -1,13 +1,16 @@
 import React, {useState} from 'react';
 import {KeyboardAvoidingView, View, Text,StyleSheet, TextInput, TouchableOpacity} from 'react-native'
+import { useAuth } from '../../server/providers/Auth';
 
 function CompletarCadastro({navigation}) {
-    const [email, setEmail] = useState('');
+    const [code, setCode] = useState('');
     const [name, setName] = useState('');
     const [surename, setSurename] = useState('');
     const [age, setAge] = useState('');
     const [height, setHeight] = useState('');
     const [weight, setWeight] = useState('');
+
+    const { user } = useAuth();
 
     async function sendForm()
     {
@@ -18,12 +21,13 @@ function CompletarCadastro({navigation}) {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                email: email,
+                email: user.email,
                 name: name,
                 surename: surename,
                 age: age,
                 height: height,
-                weight: weight
+                weight: weight,
+                code: code
             })
         });
 
@@ -45,8 +49,8 @@ function CompletarCadastro({navigation}) {
                 <TextInput
                     style={styles.input} 
                     placeholderTextColor="#fff"
-                    placeholder="Confirme seu E-mail"
-                    onChangeText={(text) => setEmail(text.toLowerCase())}
+                    placeholder="Código de Confirmação"
+                    onChangeText={(text) => setCode(parseInt(text))}
                 />
                 <TextInput
                     style={styles.input} 
