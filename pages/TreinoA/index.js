@@ -4,10 +4,23 @@ import { StyleSheet, Text, View, Image, TouchableOpacity, TextInput } from "reac
 import { AntDesign } from '@expo/vector-icons'; 
 
 export default function Dietas () {
-    const [ treinoBiceps, setTreinoBiceps ] = useState([
-        {option: ''},
-    ]);
+    const [ treinoBiceps, setTreinoBiceps ] = useState('');
 
+    const optionsTreinoBiceps = [
+        {
+            label: 'Halter',
+            value: 'Halter',
+        },
+        {
+            label: 'Barra',
+            value: 'Barra',
+        },
+        {
+            label: 'Pulley',
+            value: 'Pulley',
+        }
+    ];
+    
     const handleAdd = () => {
         setTreinoBiceps([...treinoBiceps, {option: ''}])
     }
@@ -28,12 +41,14 @@ export default function Dietas () {
             <Text style={styles.select}>Bíceps</Text>
 
             <View>
-                {treinoBiceps.map((treinoBiceps, index) => (
+            {optionsTreinoBiceps.map((optionsTreinoBiceps, index) => (
                     <View key={index} style={styles.field}>
                         <RNPickerSelect
-                            onValueChange={(treinoBiceps) => setTreinoBiceps(treinoBiceps)}
+                            onValueChange={(optionsTreinoBiceps) => setTreinoBiceps(optionsTreinoBiceps)}
                             items={[
-                                { label: "Halteres", value: treinoBiceps.option }
+                                { label: 'Halter' , value: 'Halter' },
+                                { label: 'Barra' , value: 'Barra' },
+                                { label: 'Pulley' , value: 'Pulley' },
                             ]}
                             style={pickerSelectStyles}
                         />
