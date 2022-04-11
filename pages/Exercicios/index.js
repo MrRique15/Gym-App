@@ -21,7 +21,7 @@ export default function Exercicios({navigation}){
     const teste = (teste1) => {
         switch (teste1) {
             case 'Abdominais':
-              navigation.navigate('IMC');
+              navigation.navigate('IMC'); //somente para teste
               break; 
             case 'Costas':
               break;
