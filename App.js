@@ -13,6 +13,9 @@ import Saude from './pages/Saude/index'
 import RecuperarSenha from './pages/RecuperarSenha/index';
 import RecuperarSenha2 from './pages/RecuperarSenha2/index';
 import Exercicios from './pages/Exercicios/index';
+import TreinoA from './pages/TreinoA/index';
+import TreinoB from './pages/TreinoB/index';
+import TreinoC from './pages/TreinoC/index';
 
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -39,6 +42,9 @@ const App = () => {
           <Stack.Screen name="Perfil" component={Perfil} options={{headerShown: false}}/>
           <Stack.Screen name="Saude" component={Saude} options={{headerShown: false}}/>
           <Stack.Screen name="Exercicios" component={Exercicios} options={{headerShown: false}}/>
+          <Stack.Screen name="TreinoA" component={TreinoA} options={{headerShown: false}}/>
+          <Stack.Screen name="TreinoB" component={TreinoB} options={{headerShown: false}}/>
+          <Stack.Screen name="TreinoC" component={TreinoC} options={{headerShown: false}}/>
         </Stack.Navigator>
       </NavigationContainer>
     </AuthProvider>

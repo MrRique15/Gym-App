@@ -96,6 +96,7 @@ export default function Dietas () {
                 <RNPickerSelect
                     onValueChange={(restricoes) => setRestricoes(restricoes)}
                     items={[
+                        { label: "Nenhum", value: "Nenhum" },
                         { label: "Lactose", value: "Lactose" },
                         { label: "Amendoim", value: "Amendoim" },
                         { label: "Glúten", value: "Glúten" },

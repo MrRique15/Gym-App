@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
-import {KeyboardAvoidingView, View, Text, StyleSheet, TextInput, TouchableOpacity} from 'react-native'
-import Header from '../../components/Header';
+import {KeyboardAvoidingView, View, Text, StyleSheet, TextInput, Image, TouchableOpacity} from 'react-native'
+import Logo from '../../assets/images/logo.png';
+
 import { useAuth } from '../../server/providers/Auth';
 
 function Signin({navigation}) {
@@ -11,7 +12,7 @@ function Signin({navigation}) {
 
     async function sendForm()
     {
-        let response = await fetch('http://192.168.0.91:3000/login',{
+        let response = await fetch('http://192.168.0.10:3000/login',{
             method: 'POST',
             headers: {
                 Accept: 'application/json',
@@ -42,9 +43,15 @@ function Signin({navigation}) {
     }
 
     return (
-        <KeyboardAvoidingView style={styles.signin}>
-            <Header/>
+        <KeyboardAvoidingView 
+            behavior="padding"
+            style={styles.signin}
+        >
             <View style={styles.container}>
+                <Image 
+                    source={Logo}
+                    style={styles.logo}
+                />
                 <Text style={styles.title}>FIT IN</Text>
 
                 <TextInput 
@@ -96,11 +103,14 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         backgroundColor: 'rgb(90, 88, 212)'
     },
+    logo: {
+        width: 100,
+        height: 100
+    },
     container: {
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        paddingBottom: '50%',
         width: '90%'
     },
     title: {

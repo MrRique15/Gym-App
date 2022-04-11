@@ -1,79 +1,54 @@
 import React from "react";
-import {Text, StyleSheet, View, FlatList, TouchableHighlight} from "react-native";
-
-
-
+import {Text, StyleSheet, View, TouchableOpacity} from "react-native";
 
 export default function Exercicios({navigation}){
-
-    const dados = [
-        {key: 'Abdominais'},
-        {key: 'Costas'},
-        {key: 'Bicips'},
-        {key: 'Panturrilha'},
-        {key: 'Peito'},
-        {key: 'Antebraços'},
-        {key: 'Pernas'},
-        {key: 'Ombros'},
-        {key: 'Tríceps'},
-        
-    ]
-    const teste = (teste1) => {
-        switch (teste1) {
-            case 'Abdominais':
-              navigation.navigate('IMC'); //somente para teste
-              break; 
-            case 'Costas':
-              break;
-            case 'Bicips':
-              break;
-            case 'Panturrilha':
-              break;
-            case 'Peito':
-              break;
-            case 'Antebraços':
-              break;
-            case 'Pernas':
-              break;
-            case 'Ombros':
-              break;
-            case 'Tríceps':
-              break;
-          default:
-            console.log('Sorry, we are out of page.');
-            
-        }
-
-    }
- 
-        return (
-            <View style={styles.container}>
-            <FlatList
-                keyExtractor={(item) => item.id}
-                data={dados}
-                renderItem = {({item}) => 
-                    <Text onPress={() => teste(item.key)} key={item} style={styles.textoItem}>
-                        {item.key} 
-                    </Text>}
-            />
-            </View>
-          )};
+  return (
+      <View style={styles.container}>
+        <Text style={styles.title}>Qual treino você quer cadastrar?</Text>
+        <View style={styles.types}>
+          <TouchableOpacity style={styles.button} onPress ={() => navigation.navigate('TreinoA')}>
+            <Text style={styles.text}>Treino A</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.button} onPress ={() => navigation.navigate('TreinoB')}>
+            <Text style={styles.text}>Treino B</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.button} onPress ={() => navigation.navigate('TreinoC')}>
+            <Text style={styles.text}>Treino C</Text>
+          </TouchableOpacity>
+        </View>
+      </View>
+    )};
       
  
 const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#5a58d4',
-        paddingTop: 25,
-     
+        paddingTop: 200
     },
-    textoItem: {
-       fontSize: 20,
-       color: '#fff',
-       padding: 28,
-       borderBottomWidth: 1,
-       borderBottomColor: '#000',
-       textAlign: 'center',
-       borderRadius: 10,
+    types:{
+      flexDirection: 'row',
+      alignItems: 'center',
+      justifyContent: 'space-evenly',
     },
+    title: {
+      fontSize: 25,
+      textAlign: 'center',
+      fontWeight: 'bold',
+      color: '#fff'
+    },
+    button: {   
+      backgroundColor: 'rgb(90, 69, 161)',
+      borderRadius: 9,
+      width: '25%',
+      padding: 10,
+      alignItems: 'center',
+      marginTop: 50,
+      marginBottom: 10,
+  },
+  text: {
+    color: '#fff',
+    fontSize: 18,
+    fontWeight: 'bold',
+}
 }); 

@@ -4,35 +4,17 @@ import { StyleSheet, View, Image, Text, TouchableOpacity} from 'react-native';
 export default function Treinos({navigation}){
     return(
         <View style={styles.container}>
-            <View style={styles.title}>
-                <Image 
-                        source={require('../../assets/images/gym.png')}
-                        style={styles.topImage}
-                />
-            </View>
-            <View style={styles.barraBotoes}>
+            <Image style={styles.imageLogo} source={require('../../assets/images/gym.png')}></Image>
+            <View style={styles.navbar}>
                 <TouchableOpacity
-                onPress={() => navigation.navigate('Exercicios')}
+                    onPress={() => navigation.navigate('Exercicios')}
                 >
-                    <Image
-                        source={require('../../assets/images/add.png')}
-                        style={{resizeMode: 'contain',
-                                height: 50,
-                                width: 80,
-                        }}
-                        />
+                    <Image style={styles.navbarImage} source={require('../../assets/images/add.png')}/>
                     <Text>Novo treino</Text>
                 </TouchableOpacity>
-
                 <TouchableOpacity>
-                    <Image
-                        source={require('../../assets/images/edit.png')}
-                        style={{resizeMode: 'contain',
-                                height: 50,
-                                width: 45,
-                        }}
-                        />
-                    <Text>Editar</Text>
+                    <Image style={styles.navbarImage} source={require('../../assets/images/edit.png')}/>
+                    <Text>Editar treino</Text>
                 </TouchableOpacity>
             </View>
         </View>
@@ -42,21 +24,20 @@ export default function Treinos({navigation}){
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#5a58d4',
+        justifyContent: 'center',
         alignItems: 'center',
-        padding: 30
-        //justifyContent: 'center'
+        backgroundColor: 'rgb(90, 88, 212)',
     },
-    topImage: {
-        resizeMode: 'contain',
-        width: 65,
-        height: 100,
-        backgroundColor: '#02800b', //AUXILIO APENAS
+    imageLogo: {
+        width: 100,
+        height: 100
     },
-    barraBotoes: {
-        width: '100%',
+    navbar: {
+        // flex: 1,
         flexDirection: 'row',
-        padding: 10,
-        backgroundColor: '#0282ab'
     },
+    navbarImage: {
+        width: 50,
+        height: 50
+    }
 });
