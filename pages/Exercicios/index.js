@@ -1,9 +1,15 @@
 import React from "react";
-import {Text, StyleSheet, View, TouchableOpacity} from "react-native";
+import {Text, StyleSheet, View, TouchableOpacity,Image} from "react-native";
 
 export default function Exercicios({navigation}){
   return (
       <View style={styles.container}>
+        <View style={styles.header}>
+          <Image 
+            style={styles.topImage}
+            source={require('../../assets/images/gym.png')}
+          />
+        </View>
         <Text style={styles.title}>Qual treino você quer cadastrar?</Text>
         <View style={styles.types}>
           <TouchableOpacity style={styles.button} onPress ={() => navigation.navigate('TreinoA')}>
@@ -22,10 +28,22 @@ export default function Exercicios({navigation}){
  
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
-        backgroundColor: '#5a58d4',
-        paddingTop: 200
+      flex: 1,
+      backgroundColor: '#5a58d4',
+      paddingTop: 100,
     },
+
+    topImage: {
+      resizeMode: 'contain',
+      width: 65,
+      height: 100,
+    },
+
+    header: {
+      alignItems:'center',
+      paddingBottom: 50,
+    },
+
     types:{
       flexDirection: 'row',
       alignItems: 'center',

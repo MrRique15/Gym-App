@@ -1,34 +1,42 @@
 import React, { useState } from "react";
-import RNPickerSelect from "react-native-picker-select";
 import { StyleSheet, Text, View, Image, TouchableOpacity, TextInput } from "react-native";
 import { AntDesign } from '@expo/vector-icons'; 
 
-export default function Dietas () {
-    const [ treinoBiceps, setTreinoBiceps ] = useState('');
+export default function TreinoA () {
+    const [ treinoBiceps, setTreinoBiceps ] = useState([
+        {treino: ''},
+    ]);
 
-    const optionsTreinoBiceps = [
-        {
-            label: 'Halter',
-            value: 'Halter',
-        },
-        {
-            label: 'Barra',
-            value: 'Barra',
-        },
-        {
-            label: 'Pulley',
-            value: 'Pulley',
-        }
-    ];
-    
-    const handleAdd = () => {
-        setTreinoBiceps([...treinoBiceps, {option: ''}])
+    const handleAddTreinoBiceps = () => {
+        setTreinoBiceps([...treinoBiceps, {treino: ''}])
     }
 
-    const handleDelete = (index) => {
+    const handleDeleteTreinoBiceps = (index) => {
         const values = [...treinoBiceps];
         values.splice(index, 1);
         setTreinoBiceps(values)
+    }
+
+    const handleSubmitTreinoBiceps = () => {
+        alert(treinoBiceps)
+    }
+
+    const [ treinoCostas, setTreinoCostas ] = useState([
+        {treino: ''},
+    ]);
+
+    const handleAddTreinoCostas = () => {
+        setTreinoCostas([...treinoCostas, {treino: ''}])
+    }
+
+    const handleDeleteTreinoCostas = (index) => {
+        const values = [...treinoCostas];
+        values.splice(index, 1);
+        setTreinoCostas(values)
+    }
+
+    const handleSubmitTreinoCostas = () => {
+        alert(treinoCostas)
     }
 
     return (
@@ -41,23 +49,18 @@ export default function Dietas () {
             <Text style={styles.select}>Bíceps</Text>
 
             <View>
-            {optionsTreinoBiceps.map((optionsTreinoBiceps, index) => (
+                {treinoBiceps.map((treinoBiceps, index) => (
                     <View key={index} style={styles.field}>
-                        <RNPickerSelect
-                            onValueChange={(optionsTreinoBiceps) => setTreinoBiceps(optionsTreinoBiceps)}
-                            items={[
-                                { label: 'Halter' , value: 'Halter' },
-                                { label: 'Barra' , value: 'Barra' },
-                                { label: 'Pulley' , value: 'Pulley' },
-                            ]}
-                            style={pickerSelectStyles}
+                        <TextInput
+                            onValueChange={(treinoBiceps) => setTreinoBiceps(treinoBiceps)}
+                            style={styles.input}
                         />
                         <View style={styles.addRemove}>
-                            <TouchableOpacity onPress={() => handleAdd()}>
+                            <TouchableOpacity onPress={() => handleAddTreinoBiceps()}>
                                 <AntDesign style={styles.plus} name="plus" size={24} color="white" />
                             </TouchableOpacity>
 
-                            <TouchableOpacity onPress={() => handleDelete(index)}>
+                            <TouchableOpacity onPress={() => handleDeleteTreinoBiceps(index)}>
                                 <AntDesign style={styles.minus} name="minus" size={24} color="white" />
                             </TouchableOpacity>
                         </View>
@@ -65,7 +68,33 @@ export default function Dietas () {
                 )) }
             </View>
 
-            <TouchableOpacity style={styles.button} onPress ={()=> handleSubmit()}>
+            <TouchableOpacity style={styles.button} onPress ={()=> handleSubmitTreinoBiceps()}>
+                <Text style={styles.text}>Finalizar</Text>
+            </TouchableOpacity>
+
+            <Text style={styles.select}>Costas</Text>
+
+            <View>
+                {treinoCostas.map((treinoCostas, index) => (
+                    <View key={index} style={styles.field}>
+                        <TextInput
+                            onValueChange={(treinoCostas) => setTreinoCostas(treinoCostas)}
+                            style={styles.input}
+                        />
+                        <View style={styles.addRemove}>
+                            <TouchableOpacity onPress={() => handleAddTreinoCostas()}>
+                                <AntDesign style={styles.plus} name="plus" size={24} color="white" />
+                            </TouchableOpacity>
+
+                            <TouchableOpacity onPress={() => handleDeleteTreinoCostas(index)}>
+                                <AntDesign style={styles.minus} name="minus" size={24} color="white" />
+                            </TouchableOpacity>
+                        </View>
+                    </View>
+                )) }
+            </View>
+
+            <TouchableOpacity style={styles.button} onPress ={()=> handleSubmitTreinoCostas()}>
                 <Text style={styles.text}>Finalizar</Text>
             </TouchableOpacity>
         </View>
@@ -85,22 +114,33 @@ const styles = StyleSheet.create({
         width: 65,
         height: 100,
     },
+    field: {
+        flexDirection: 'row',
+        justifyContent: 'center'
+    },
+    input: {
+        fontSize: 16,
+        paddingVertical: 12,
+        paddingHorizontal: 12,
+        marginBottom: 20,
+        width: '80%',
+        borderWidth: 1,
+        borderColor: 'rgb(90, 69, 161)',
+        borderRadius: 4,
+        color: 'white',
+        paddingRight: 0
+    },
     select: {
         padding: 20, 
         fontSize: 18,
         color: '#fff'
     },
-    field: {
-        width: '100%',
-        flexDirection: 'row',
-        justifyContent: 'space-around'
-    },
+
     addRemove: {
         width: '10%',
         flexDirection: 'row'
     },
     plus: {
-        marginRight: 20
     },
     button: {   
         backgroundColor: 'rgb(90, 69, 161)',
@@ -116,29 +156,4 @@ const styles = StyleSheet.create({
         fontSize: 18,
         fontWeight: 'bold',
     },
-});
-
-const pickerSelectStyles = StyleSheet.create({
-    inputIOS: {
-        fontSize: 16,
-        paddingVertical: 12,
-        paddingHorizontal: 10,
-        marginBottom: 20,
-        width: '180%',
-        borderWidth: 1,
-        borderColor: 'rgb(90, 69, 161)',
-        borderRadius: 4,
-        color: 'white',
-        paddingRight: 0
-    },
-    inputAndroid: {
-        fontSize: 16,
-        paddingHorizontal: 10,
-        paddingVertical: 8,
-        borderWidth: 0.5,
-        borderColor: 'purple',
-        borderRadius: 8,
-        color: 'white',
-        paddingRight: 30
-    }
 });
