@@ -82,7 +82,7 @@ function Menu({navigation}){
                             source={require('../../assets/images/stethoscope.png')}
                             style={styles.icon}
                         />
-                        <Text style={styles.optionText}>Saúde</Text>
+                        <Text style={styles.optionText}>Artigos</Text>
                 </TouchableOpacity>
             </View>
         </View>
