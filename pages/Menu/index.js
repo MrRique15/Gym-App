@@ -1,6 +1,7 @@
 import React from 'react';
 import {View, Text, Image, StyleSheet, TouchableOpacity} from 'react-native'
 import { useAuth } from '../../server/providers/Auth';
+import ProfilePic from '../../components/profilePic'
 
 function Menu({navigation}){
     const {user} = useAuth();
@@ -11,9 +12,12 @@ function Menu({navigation}){
                 style={styles.logo}
                 source={require('../../assets/images/logo.png')}
             />
-            <Text style={styles.welcome}>
-                Olá, {user.name} {user.surename}
-            </Text>
+            <View style={styles.user}>
+                <ProfilePic/>
+                <Text style={styles.welcome}>
+                    Olá, {user.name} {user.surename}
+                </Text>
+            </View>
             <View style={styles.options}>
                 <TouchableOpacity
                     style={styles.buttonFacebookStyle}
@@ -96,6 +100,13 @@ const styles = StyleSheet.create({
         backgroundColor: 'rgb(90, 88, 212)', 
         paddingTop: 100
     },  
+    user: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-evenly',
+        width: '100%',
+        paddingBottom: 30
+    },  
     logo: {
         resizeMode: 'contain',
         width: 100,
@@ -103,7 +114,7 @@ const styles = StyleSheet.create({
     },
     options: {
         flexDirection: 'row',
-        alignContent: 'center'
+        alignContent: 'center',
     },  
     buttonFacebookStyle: {
         display: 'flex',
