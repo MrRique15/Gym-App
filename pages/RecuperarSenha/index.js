@@ -10,7 +10,7 @@ function RecuperarSenha({navigation}) {
 
     async function sendCode()
     {
-        let response = await fetch('http://192.168.0.91:3000/sendCode',{
+        let response = await fetch('http://192.168.100.19:3000/sendCode',{
             method: 'POST',
             headers: {
                 Accept: 'application/json',
@@ -30,7 +30,7 @@ function RecuperarSenha({navigation}) {
     }
     async function validateCode()
     {
-        let response = await fetch('http://192.168.0.91:3000/validateCode',{
+        let response = await fetch('http://192.168.100.19:3000/validateCode',{
             method: 'POST',
             headers: {
                 Accept: 'application/json',
