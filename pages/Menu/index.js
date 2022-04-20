@@ -13,7 +13,6 @@ function Menu({navigation}){
                 source={require('../../assets/images/logo.png')}
             />
             <View style={styles.user}>
-                <ProfilePic/>
                 <Text style={styles.welcome}>
                     Olá, {user.name} {user.surename}
                 </Text>

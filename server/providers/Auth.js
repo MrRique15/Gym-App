@@ -7,6 +7,11 @@ export const AuthProvider = (props) => {
         name: '',
         surename: '',
         email: '',
+        imageURL: '',
+        altura: 0,
+        peso: 0,
+        tipoFisico: '',
+        idade: 0,
     });
 
     return(

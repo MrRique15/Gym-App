@@ -12,7 +12,7 @@ export default function Dietas () {
 
     // async function handleSubmit()
     // {
-    //     let response = await fetch('http://192.168.0.10:3000/completarcadastro',{
+    //     let response = await fetch('http://192.168.0.91:3000/completarcadastro',{
     //         method: 'POST',
     //         headers: {
     //             Accept: 'application/json',

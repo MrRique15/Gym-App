@@ -12,7 +12,7 @@ function Signin({navigation}) {
 
     async function sendForm()
     {
-        let response = await fetch('http://192.168.0.10:3000/login',{
+        let response = await fetch('http://192.168.0.91:3000/login',{
             method: 'POST',
             headers: {
                 Accept: 'application/json',
@@ -30,6 +30,10 @@ function Signin({navigation}) {
                 name: json.name,
                 surename: json.surename,
                 email: json.email,
+                imageURL: json.imageURL,
+                altura: json.height,
+                peso: json.weight,
+                idade: json.age,
             });
             navigation.navigate('Menu');   
         }else if(json.error == 'incomplete'){

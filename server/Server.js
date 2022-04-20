@@ -79,7 +79,8 @@ app.post('/cadastro', async (req, res) => {
                     age: 0,
                     height: 0.00,
                     weight: 0.00,
-                    code: confirmCode
+                    code: confirmCode,
+                    imageURL: '',
                 });
                 res.send(JSON.stringify({error:'cadastrar',message:'Cadastro realizado com sucesso!'}));
             }else{
@@ -104,7 +105,7 @@ app.post('/login', async (req, res) => {
             if(response.name == '' || response.surename == ''){
                 res.send(JSON.stringify({error:'incomplete',message:'Finalize seu cadastro!'}));
             }else{
-                res.send(JSON.stringify({error:'logar',message:'Logado com sucesso!',name:response.name,surename:response.surename,email:response.email}));
+                res.send(JSON.stringify({error:'logar',message:'Logado com sucesso!',name:response.name,surename:response.surename,email:response.email,age:response.age,height:response.height,weight:response.weight,imageURL:response.imageURL}));
             }
         }
     }
@@ -125,7 +126,8 @@ app.post('/completarcadastro', async (req, res) => {
                 age: parseInt(req.body.age),
                 weight: parseFloat(req.body.weight),
                 height: parseFloat(req.body.height),
-                code: 0
+                code: 0,
+                imageURL: '',
             }, function(err, result){
                 if(err){
                     res.send(JSON.stringify({error:'error',message:'Erro ao completar Cadastro!'}));
@@ -213,6 +215,22 @@ app.post('/recPassword', async (req, res) => {
     }
 });
 
+app.post('/setImageBD', async (req, res) => {
+    console.log(req.body.email, req.body.imageURL);
+    if(req.body.imageURL == ''){
+        res.send(JSON.stringify({error:'error',message:'URL de Imagem inválido'}));
+    }else{
+        User.updateOne({email:req.body.email},{
+            imageURL: req.body.imageURL
+        }, function(err, result){
+            if(err){
+                res.send(JSON.stringify({error:'error',message:'Erro ao atualizar usuário!'}));
+            }else{
+                res.send(JSON.stringify({error:'imageDone',message:'Imagem alterada com Sucesso!'}));
+            }
+        });
+    }
+});
 let port = process.env.PORT || 3000;
 app.listen(port, (req, res)=>{
     console.log('Server is running on port ' + port);

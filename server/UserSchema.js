@@ -32,7 +32,11 @@ const UserSchema = new mongoose.Schema({
     code: {
         type: Number,
         require: true
-    }
+    },
+    imageURL: {
+        type: String,
+        require: true
+    },
 }, {
     timestamps: true,
     toJSON: { virtuals: true },
