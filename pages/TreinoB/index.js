@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { StyleSheet, Text, View, Image, TouchableOpacity, TextInput } from "react-native";
+import { StyleSheet, Text, View, Image, TouchableOpacity, TextInput, ScrollView } from "react-native";
 import { AntDesign } from '@expo/vector-icons'; 
 
 export default function TreinoA () {
@@ -40,65 +40,66 @@ export default function TreinoA () {
     }
 
     return (
-        <View style={styles.container}>
-            <Image 
-                style={styles.topImage}
-                source={require('../../assets/images/gym.png')}
-            />
-            <Text style={styles.select}>Adicione um exercício para: </Text>
-            <Text style={styles.select}>Tríceps</Text>
+        <ScrollView>
+            <View style={styles.container}>
+                <Image 
+                    style={styles.topImage}
+                    source={require('../../assets/images/gym.png')}
+                />
+                <Text style={styles.select}>Adicione um exercício para: </Text>
+                <Text style={styles.select}>Tríceps</Text>
 
-            <View>
-                {treinoTriceps.map((treinoTriceps, index) => (
-                    <View key={index} style={styles.field}>
-                        <TextInput
-                            onValueChange={(treinoTriceps) => setTreinoTriceps(treinoTriceps)}
-                            style={styles.input}
-                        />
-                        <View style={styles.addRemove}>
-                            <TouchableOpacity onPress={() => handleAddTreinoTriceps()}>
-                                <AntDesign style={styles.plus} name="plus" size={24} color="white" />
-                            </TouchableOpacity>
+                <View>
+                    {treinoTriceps.map((treinoTriceps, index) => (
+                        <View key={index} style={styles.field}>
+                            <TextInput
+                                onValueChange={(treinoTriceps) => setTreinoTriceps(treinoTriceps)}
+                                style={styles.input}
+                            />
+                            <View style={styles.addRemove}>
+                                <TouchableOpacity onPress={() => handleAddTreinoTriceps()}>
+                                    <AntDesign style={styles.plus} name="plus" size={24} color="white" />
+                                </TouchableOpacity>
 
-                            <TouchableOpacity onPress={() => handleDeleteTreinoTriceps(index)}>
-                                <AntDesign style={styles.minus} name="minus" size={24} color="white" />
-                            </TouchableOpacity>
+                                <TouchableOpacity onPress={() => handleDeleteTreinoTriceps(index)}>
+                                    <AntDesign style={styles.minus} name="minus" size={24} color="white" />
+                                </TouchableOpacity>
+                            </View>
                         </View>
-                    </View>
-                )) }
-            </View>
+                    )) }
+                </View>
 
-            <TouchableOpacity style={styles.button} onPress ={()=> handleSubmitTreinoTriceps()}>
-                <Text style={styles.text}>Finalizar</Text>
-            </TouchableOpacity>
+                <TouchableOpacity style={styles.button} onPress ={()=> handleSubmitTreinoTriceps()}>
+                    <Text style={styles.text}>Finalizar</Text>
+                </TouchableOpacity>
 
-            <Text style={styles.select}>Peito</Text>
+                <Text style={styles.select}>Peito</Text>
 
-            <View>
-                {treinoPeito.map((treinoPeito, index) => (
-                    <View key={index} style={styles.field}>
-                        <TextInput
-                            onValueChange={(treinoPeito) => setTreinoPeito(treinoPeito)}
-                            style={styles.input}
-                        />
-                        <View style={styles.addRemove}>
-                            <TouchableOpacity onPress={() => handleAddTreinoPeito()}>
-                                <AntDesign style={styles.plus} name="plus" size={24} color="white" />
-                            </TouchableOpacity>
+                <View>
+                    {treinoPeito.map((treinoPeito, index) => (
+                        <View key={index} style={styles.field}>
+                            <TextInput
+                                onValueChange={(treinoPeito) => setTreinoPeito(treinoPeito)}
+                                style={styles.input}
+                            />
+                            <View style={styles.addRemove}>
+                                <TouchableOpacity onPress={() => handleAddTreinoPeito()}>
+                                    <AntDesign style={styles.plus} name="plus" size={24} color="white" />
+                                </TouchableOpacity>
 
-                            <TouchableOpacity onPress={() => handleDeleteTreinoPeito(index)}>
-                                <AntDesign style={styles.minus} name="minus" size={24} color="white" />
-                            </TouchableOpacity>
+                                <TouchableOpacity onPress={() => handleDeleteTreinoPeito(index)}>
+                                    <AntDesign style={styles.minus} name="minus" size={24} color="white" />
+                                </TouchableOpacity>
+                            </View>
                         </View>
-                    </View>
-                )) }
+                    )) }
+                </View>
+
+                <TouchableOpacity style={styles.button} onPress ={()=> handleSubmitTreinoPeito()}>
+                    <Text style={styles.text}>Finalizar</Text>
+                </TouchableOpacity>
             </View>
-
-            <TouchableOpacity style={styles.button} onPress ={()=> handleSubmitTreinoPeito()}>
-                <Text style={styles.text}>Finalizar</Text>
-            </TouchableOpacity>
-        </View>
-
+        </ScrollView>
     );
 }
 
