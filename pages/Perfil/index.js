@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
     },
     profileInfo: {
         marginTop: 10,
-        marginBottom: 10,
+        marginBottom: 100,
         marginLeft: 20,
         flex: 1,
     },

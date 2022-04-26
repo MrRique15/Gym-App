@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { StyleSheet, Text, View, Image, TouchableOpacity, TextInput } from "react-native";
+import { StyleSheet, Text, View, Image, TouchableOpacity, TextInput, ScrollView } from "react-native";
 import { AntDesign } from '@expo/vector-icons'; 
 
 export default function TreinoA () {
@@ -40,6 +40,7 @@ export default function TreinoA () {
     }
 
     return (
+        <ScrollView>
         <View style={styles.container}>
             <Image 
                 style={styles.topImage}
@@ -98,7 +99,7 @@ export default function TreinoA () {
                 <Text style={styles.text}>Finalizar</Text>
             </TouchableOpacity>
         </View>
-
+        </ScrollView>           
     );
 }
 

@@ -55,24 +55,24 @@ function IMC() {
           <Text style={styles.buttonText}>hipertrofia.org</Text>
         </TouchableOpacity>
 
-        <Text style={styles.text}>Benefícios para idosos</Text>
-        <TouchableOpacity
-          style={styles.artigo}
-          onPress={() => {
-            openUrl('https://www.saude.rj.gov.br/atividade-na-terceira-idade/beneficios')
-          }}
-        >
-          <Text style={styles.buttonText}>Atividade na terceira idade</Text>
-        </TouchableOpacity>
+          <Text style={styles.text}>Benefícios para idosos</Text>
+          <TouchableOpacity
+            style={styles.artigo}
+            onPress={() => {
+              openUrl('https://www.saude.rj.gov.br/atividade-na-terceira-idade/beneficios')
+            }}
+          >
+            <Text style={styles.buttonText}>Atividade na terceira idade</Text>
+          </TouchableOpacity>
 
-        <TouchableOpacity
-          style={styles.artigo}
-          onPress={() => {
-            openUrl('https://www.tuasaude.com/atividade-fisica-para-idosos/')
-          }}
-        >
-          <Text style={styles.buttonText}>Benefícios da atividade física para idosos</Text>
-        </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.artigo}
+            onPress={() => {
+              openUrl('https://www.tuasaude.com/atividade-fisica-para-idosos/')
+            }}
+          >
+            <Text style={styles.buttonText}>Benefícios da atividade física para idosos</Text>
+          </TouchableOpacity>
       </View>
     </ScrollView>
   )
@@ -127,9 +127,6 @@ const styles = StyleSheet.create({
     paddingLeft: 10,
     color: '#fff',
   },
-  image: {
-  
-  }
 });
 
 export default IMC;
