@@ -6,6 +6,7 @@ import CadastroConcluido from './pages/CadastroConcluido/index';
 import IMC from './pages/IMC/index';
 import CompletarCadastro from './pages/CompletarCadastro/index';
 import Dietas from './pages/Dietas/index';
+import Dietas1 from './pages/Dietas1/index';
 import Treinos from './pages/Treinos/index'
 import Metas from './pages/Metas/index'
 import Perfil from './pages/Perfil/index'
@@ -37,6 +38,7 @@ const App = () => {
           <Stack.Screen name="RecuperarSenha2" component={RecuperarSenha2} options={{headerShown: false}}/>
           <Stack.Screen name="IMC" component={IMC} options={{headerShown: false}}/>
           <Stack.Screen name="Dietas" component={Dietas} options={{headerShown: false}}/>
+          <Stack.Screen name="Dietas1" component={Dietas1} options={{headerShown: false}}/>
           <Stack.Screen name="Treinos" component={Treinos} options={{headerShown: false}}/>
           <Stack.Screen name="Metas" component={Metas} options={{headerShown: false}}/>
           <Stack.Screen name="Perfil" component={Perfil} options={{headerShown: false}}/>
