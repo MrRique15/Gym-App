@@ -20,7 +20,7 @@ export default function ImagePickerExample() {
     if (!result.cancelled) {
       setImage(result.uri);
       user.imageURL = result.uri;
-      let response = await fetch('http://192.168.100.19:3000/setImageBD',{
+      let response = await fetch('http://192.168.0.91:3000/setImageBD',{
         method: 'POST',
         headers: {
           Accept: 'application/json',

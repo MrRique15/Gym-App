@@ -1,44 +1,67 @@
 import React, { useState } from "react";
 import RNPickerSelect from "react-native-picker-select";
 import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
+import { useAuth } from '../../server/providers/Auth';
 
 export default function Dietas () {
     const [ tipofisico, setTipoFisico ] = useState("");
     const [ objetivo, setObjetivo ] = useState("");
     const [ restricoes, setRestricoes ] = useState("");
 
-    // função copiada de outro file, só pra ter ideia de como fazer
-    // necessário pegar os dados selecionados e mandar pro DB
+    const {user, setUser} = useAuth();
 
-    // async function handleSubmit()
-    // {
-    //     let response = await fetch('http://192.168.0.91:3000/completarcadastro',{
-    //         method: 'POST',
-    //         headers: {
-    //             Accept: 'application/json',
-    //             'Content-Type': 'application/json'
-    //         },
-    //         body: JSON.stringify({
-    //             email: email,
-    //             name: name,
-    //             surename: surename,
-    //             age: age,
-    //             height: height,
-    //             weight: weight
-    //         })
-    //     });
+    async function handleSubmit()
+    {
+        user.tipoFisico = tipofisico;
+        user.objetivo = objetivo;
+        user.restricao = restricoes;
+        let response = await fetch('http://192.168.0.91:3000/saveDieta',{
+            method: 'POST',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                email: user.email,
+                tipoFisico: tipofisico,
+                restricao: restricoes,
+                objetivo: objetivo
+            })
+        });
 
-    //     let json = await response.json();
-    //     if(json.error == 'cadastrocompleto'){
-    //         alert(json.message);
-    //         setTimeout(() => {
-    //             navigation.navigate('Menu');
-    //         }, 200);
-    //     }else if(json.error == 'error'){
-    //         alert(json.message);
-    //     }
-    // }
+        let json = await response.json();
+        if(json.error == 'dietasalva'){
+            alert(json.message);
+        }else if(json.error == 'error'){
+            alert(json.message);
+        }
+    }
 
+    const getData = async () => {
+        let response = await fetch('http://192.168.0.91:3000/getDieta',{
+            method: 'POST',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                email: user.email,
+            })
+        });
+
+        let json = await response.json();
+        if(json.error == 'dieta'){
+            user.objetivo = json.objetivo;
+            user.restricao = json.restricao;
+            setTipoFisico(user.tipoFisico);
+            setRestricoes(user.restricao);
+            setObjetivo(user.objetivo);
+        }
+    }
+
+    if(objetivo == "" || restricoes == "" || tipofisico == ""){
+        getData();
+    }
 
     return (
         <View style={styles.container}>

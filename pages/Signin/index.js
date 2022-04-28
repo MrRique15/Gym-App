@@ -12,7 +12,7 @@ function Signin({navigation}) {
 
     async function sendForm()
     {
-        let response = await fetch('http://192.168.100.19:3000/login',{
+        let response = await fetch('http://192.168.0.91:3000/login',{
             method: 'POST',
             headers: {
                 Accept: 'application/json',
@@ -34,10 +34,21 @@ function Signin({navigation}) {
                 altura: json.height,
                 peso: json.weight,
                 idade: json.age,
+                tipoFisico: json.tipoFisico,
             });
             navigation.navigate('Menu');   
         }else if(json.error == 'incomplete'){
             alert(json.message);
+            setUser({
+                name: json.name,
+                surename: json.surename,
+                email: json.email,
+                imageURL: json.imageURL,
+                altura: json.height,
+                peso: json.weight,
+                idade: json.age,
+                tipoFisico: json.tipoFisico,
+            });
             setTimeout(() => {
                 navigation.navigate('CompletarCadastro');
             }, 200);

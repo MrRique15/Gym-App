@@ -12,6 +12,8 @@ export const AuthProvider = (props) => {
         peso: 0,
         tipoFisico: '',
         idade: 0,
+        objetivo: 'Nenhum',
+        restricao: 'Nenhuma',
     });
 
     return(

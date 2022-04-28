@@ -1,7 +1,7 @@
 import React from 'react';
 import {KeyboardAvoidingView, View, StyleSheet, Text} from 'react-native'
 import ProfilePic from '../../components/profilePic'
-import UserSchema from '../../server/UserSchema';
+import UserSchema from '../../server/Schemas/UserSchema';
 import { useAuth } from '../../server/providers/Auth';
 
 function Perfil() {
@@ -16,7 +16,7 @@ function Perfil() {
                 <Text style={styles.title}>PERFIL</Text>
                 <Text style={styles.rawInfo}>Nome: {user.name} {user.surename}</Text>
                 <Text style={styles.rawInfo}>Altura: {user.altura} M</Text>
-                <Text style={styles.rawInfo}>Tipo Fisico: A FAZER</Text>
+                <Text style={styles.rawInfo}>Tipo Fisico: {user.tipoFisico}</Text>
                 <Text style={styles.rawInfo}>Idade: {user.idade} Anos</Text>
                 <Text style={styles.rawInfo}>Complicações de Saude: A FAZER</Text>
                 <Text style={styles.rawInfo}>Peso: {user.peso} Kg</Text>

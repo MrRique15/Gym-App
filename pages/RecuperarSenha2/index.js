@@ -10,7 +10,7 @@ function RecuperarSenha2({navigation}) {
 
     async function recPassword()
     {
-        let response = await fetch('http://192.168.100.19:3000/recPassword',{
+        let response = await fetch('http://192.168.0.91:3000/recPassword',{
             method: 'POST',
             headers: {
                 Accept: 'application/json',

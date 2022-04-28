@@ -37,6 +37,10 @@ const UserSchema = new mongoose.Schema({
         type: String,
         require: true
     },
+    tipoFisico: {
+        type: String,
+        require: true
+    },
 }, {
     timestamps: true,
     toJSON: { virtuals: true },

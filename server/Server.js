@@ -2,7 +2,9 @@ const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
-const User = require('./UserSchema');
+const User = require('./Schemas/UserSchema');
+const Dieta = require('./Schemas/DietaSchema');
+const Treino = require('./Schemas/TreinoSchema');
 const nodemailer = require('nodemailer');
 
 const app = express();
@@ -81,6 +83,18 @@ app.post('/cadastro', async (req, res) => {
                     weight: 0.00,
                     code: confirmCode,
                     imageURL: '',
+                    tipoFisico: 'A definir',
+                });
+                const dieta = await Dieta.create({
+                    email: req.body.email,
+                    objetivo: 'Nenhum',
+                    restricao: 'Nenhuma',
+                });
+                const treino = await Treino.create({
+                    email: req.body.email,
+                    treinoOne: {name: "Nenhum", exercicios: []},
+                    treinoTwo: {name: "Nenhum", exercicios: []},
+                    treinoThree: {name: "Nenhum", exercicios: []},
                 });
                 res.send(JSON.stringify({error:'cadastrar',message:'Cadastro realizado com sucesso!'}));
             }else{
@@ -93,19 +107,19 @@ app.post('/cadastro', async (req, res) => {
 });
 
 app.post('/login', async (req, res) => {
-    
     if(req.body.email == '' || req.body.password == ''){
         res.send({error:'error',message:'Preencha todos os Campos!'});
     }else{
-        let response = await User.findOne({email:req.body.email, password:req.body.password});
-
+        let response = await User.findOne({email:req.body.email});
         if (response == null){
-            res.send(JSON.stringify({error:'error',message:'Login ou Senha incorretos!'}));
+            res.send(JSON.stringify({error:'error',message:'Usuário não cadastrado!'}));
+        }else if(response.password != req.body.password){
+            res.send(JSON.stringify({error:'error',message:'Email ou Senha incorretos!'}));
         }else if(response.email == req.body.email && response.password == req.body.password){
             if(response.name == '' || response.surename == ''){
-                res.send(JSON.stringify({error:'incomplete',message:'Finalize seu cadastro!'}));
+                res.send(JSON.stringify({error:'incomplete',message:'Finalize seu cadastro!',name:response.name,surename:response.surename,email:response.email,age:response.age,height:response.height,weight:response.weight,imageURL:response.imageURL,tipoFisico:response.tipoFisico}));
             }else{
-                res.send(JSON.stringify({error:'logar',message:'Logado com sucesso!',name:response.name,surename:response.surename,email:response.email,age:response.age,height:response.height,weight:response.weight,imageURL:response.imageURL}));
+                res.send(JSON.stringify({error:'logar',message:'Logado com sucesso!',name:response.name,surename:response.surename,email:response.email,age:response.age,height:response.height,weight:response.weight,imageURL:response.imageURL,tipoFisico:response.tipoFisico}));
             }
         }
     }
@@ -116,7 +130,6 @@ app.post('/completarcadastro', async (req, res) => {
         res.send(JSON.stringify({error:'error',message:'Preencha todos os Campos!'}));
     }else{
         let response = await User.findOne({email:req.body.email});
-
         if (response.code != req.body.code){
             res.send(JSON.stringify({error:'error',message:'Código de confirmação incorreto!'}));
         }else{
@@ -128,6 +141,7 @@ app.post('/completarcadastro', async (req, res) => {
                 height: parseFloat(req.body.height),
                 code: 0,
                 imageURL: '',
+                tipoFisico: 'A definir',
             }, function(err, result){
                 if(err){
                     res.send(JSON.stringify({error:'error',message:'Erro ao completar Cadastro!'}));
@@ -216,7 +230,6 @@ app.post('/recPassword', async (req, res) => {
 });
 
 app.post('/setImageBD', async (req, res) => {
-    console.log(req.body.email, req.body.imageURL);
     if(req.body.imageURL == ''){
         res.send(JSON.stringify({error:'error',message:'URL de Imagem inválido'}));
     }else{
@@ -231,6 +244,53 @@ app.post('/setImageBD', async (req, res) => {
         });
     }
 });
+
+app.post('/saveDieta', async (req, res) => {
+    let response = await Dieta.findOne({email:req.body.email});
+    console.log('Procurando Dieta');
+    if(response == null){
+        res.send(JSON.stringify({error:'error',message:'Nenhuma dieta cadastrada!'}));
+    }else{
+        Dieta.updateOne({email:req.body.email},{
+            email: req.body.email,
+            objetivo: req.body.objetivo,
+            restricao: req.body.restricao,
+        }, function(err, result){
+            if(err){
+                res.send(JSON.stringify({error:'error',message:'Erro ao atualizar dieta!'}));
+            }else{
+                User.updateOne({email:req.body.email},{
+                    tipoFisico: req.body.tipoFisico
+                }, function(err, result){
+                    if(err){
+                        res.send(JSON.stringify({error:'error',message:'Erro ao atualizar Dieta!'}));
+                    }else{
+                        res.send(JSON.stringify({error:'dietasalva',message:'Dieta atualizada com Sucesso!'}));
+                    }
+                });
+            }
+        });
+    }
+});
+
+app.post('/getDieta', async (req, res) => {
+    let response = await Dieta.findOne({email:req.body.email});
+    if(response == null){
+        res.send(JSON.stringify({error:'error',message:'Nenhuma dieta cadastrada!'}));
+    }else{
+        res.send(JSON.stringify({error:'dieta',message:'Dieta encontrada!',objetivo:response.objetivo,restricao:response.restricao}));
+    }
+});
+
+app.post('/getTreino', async (req, res) => {
+    let response = await Treino.findOne({email:req.body.email});
+    if(response == null){
+        res.send(JSON.stringify({error:'error',message:'Nenhum treino cadastrado!'}));
+    }else{
+        res.send(JSON.stringify({error:'treino',message:'Treino encontrado!',treinoOne:response.treinoOne,treinoTwo:response.treinoTwo,treinoThree:response.treinoThree}));
+    }
+});
+
 let port = process.env.PORT || 3000;
 app.listen(port, (req, res)=>{
     console.log('Server is running on port ' + port);

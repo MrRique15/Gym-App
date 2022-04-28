@@ -10,11 +10,11 @@ function CompletarCadastro({navigation}) {
     const [height, setHeight] = useState('');
     const [weight, setWeight] = useState('');
 
-    const { user } = useAuth();
+    const { user, setUser } = useAuth();
 
     async function sendForm()
     {
-        let response = await fetch('http://192.168.100.19:3000/completarcadastro',{
+        let response = await fetch('http://192.168.0.91:3000/completarcadastro',{
             method: 'POST',
             headers: {
                 Accept: 'application/json',
@@ -34,6 +34,16 @@ function CompletarCadastro({navigation}) {
         let json = await response.json();
         if(json.error == 'cadastrocompleto'){
             alert(json.message);
+            setUser({
+                name: name,
+                surename: surename,
+                email: user.email,
+                imageURL: user.imageURL,
+                altura: height,
+                peso: weight,
+                idade: age,
+                tipoFisico: user.tipoFisico,
+            });
             setTimeout(() => {
                 navigation.navigate('Menu');
             }, 200);
