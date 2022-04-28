@@ -21,7 +21,7 @@ function Menu({navigation}){
                 <TouchableOpacity
                     style={styles.buttonFacebookStyle}
                     activeOpacity={0.5}
-                    onPress={() => navigation.navigate('Dietas')}
+                    onPress={() => navigation.navigate('Dietas1')}
                 >
                     <Image
                         style={styles.icon}
