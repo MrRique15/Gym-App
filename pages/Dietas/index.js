@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import RNPickerSelect from "react-native-picker-select";
-import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
+import { StyleSheet, Text, View, Image, TouchableOpacity, ScrollView } from "react-native";
 import { useAuth } from '../../server/providers/Auth';
 
-export default function Dietas () {
+export default function Dietas ({navigation}) {
     const [ tipofisico, setTipoFisico ] = useState("");
     const [ objetivo, setObjetivo ] = useState("");
     const [ restricoes, setRestricoes ] = useState("");
@@ -15,7 +15,7 @@ export default function Dietas () {
         user.tipoFisico = tipofisico;
         user.objetivo = objetivo;
         user.restricao = restricoes;
-        let response = await fetch('http://192.168.0.91:3000/saveDieta',{
+        let response = await fetch('http://192.168.237.68:3000/saveDieta',{
             method: 'POST',
             headers: {
                 Accept: 'application/json',
@@ -64,6 +64,7 @@ export default function Dietas () {
     }
 
     return (
+        <ScrollView>
         <View style={styles.container}>
             <Image 
                 style={styles.topImage}
@@ -133,8 +134,11 @@ export default function Dietas () {
             <TouchableOpacity style={styles.button} onPress ={()=> handleSubmit()}>
                 <Text style={styles.text}>Finalizar</Text>
             </TouchableOpacity>
+            <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Dietas1')}>
+                <Text style={styles.text}>Acessar Dietas</Text>
+            </TouchableOpacity>
         </View>
-
+        </ScrollView>
     );
 }
 
