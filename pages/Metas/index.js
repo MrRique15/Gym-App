@@ -1,8 +1,12 @@
 import * as React from 'react-native';
-import {useState} from 'react';
-import { Text, Image, View, TextInput, TouchableOpacity, StyleSheet } from 'react-native'
+import {} from 'react';
+import { Text, Image, View, TextInput, StyleSheet } from 'react-native'
+import { useAuth } from '../../server/providers/Auth';
+
 
 function Metas() {
+  const { user } = useAuth();
+
   return (
     <View style={styles.container}>
       <View >
@@ -11,14 +15,17 @@ function Metas() {
           source={require('../../assets/images/metas.png')}
         />
       </View>
-      <Text style={styles.text}>Informe sua meta de peso</Text>
+      <Text style={styles.text}>Minha meta de peso é:</Text>
       <TextInput
         style={styles.input}
         placeholderTextColor="#fff"
-        placeholder="peso desejado"
+        placeholder="Meta:"
         keyboardType="numeric"
       />
-      
+
+      <Text style={styles.text}>Eu estou com:</Text>
+      <Text style={styles.input}>{user.peso}kg</Text>
+      <Text style={styles.text}>Continue se exercitando! 😁</Text>
     </View>
   )
 }

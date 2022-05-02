@@ -9,7 +9,7 @@ function IMC() {
   }
 
   return (
-    <ScrollView>
+    <ScrollView style={styles.scrollView}>
       <View style={styles.container}>
         <View style={styles.image}>
           <Image
@@ -86,12 +86,15 @@ const styles = StyleSheet.create({
     marginTop: -100,
     backgroundColor: 'rgb(90, 88, 212)',
   },
+  scrollView: {
+    backgroundColor: 'rgb(90, 88, 212)',
+  },
   icon: {
     resizeMode: 'contain',
     height: 100,
     width: 100,
     marginBottom: 30,
-    marginTop: 150
+    marginTop: 200
   },
   text: {
     marginVertical: 10,
