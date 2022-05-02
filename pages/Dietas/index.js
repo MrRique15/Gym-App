@@ -15,7 +15,7 @@ export default function Dietas ({navigation}) {
         user.tipoFisico = tipofisico;
         user.objetivo = objetivo;
         user.restricao = restricoes;
-        let response = await fetch('http://192.168.237.68:3000/saveDieta',{
+        let response = await fetch('http://192.168.0.10:3000/saveDieta',{
             method: 'POST',
             headers: {
                 Accept: 'application/json',
@@ -64,80 +64,82 @@ export default function Dietas ({navigation}) {
     }
 
     return (
-        <ScrollView style={styles.scroll}>
-        <View style={styles.container}>
-            <Image 
-                style={styles.topImage}
-                source={require('../../assets/images/diet.png')}
-            />
-            <Text style={styles.select}>
-                {tipofisico ?
-                `Tipo físico: ${tipofisico}` :
-                    "Selecione seu tipo físico:"
-                }
-            </Text>
-            <View style={styles.selector}>
-                <RNPickerSelect
-                    onValueChange={(tipofisico) => setTipoFisico(tipofisico)}
-                    items={[
-                        { label: "Endomorfo", value: "Endomorfo" },
-                        { label: "Mesomorfo", value: "Mesomorfo" },
-                        { label: "Ectomorfo", value: "Ectomorfo" },
-                    ]}
-                    style={pickerSelectStyles}
-                />
-            </View>
-            <Text
-                style={styles.select}
-            >
-                {objetivo ?
-                `Objetivo: ${objetivo}` :
-                    "Selecione seu objetivo:"
-                }
-            </Text>
-            <View style={styles.selector}>
-                <RNPickerSelect
-                    onValueChange={(objetivo) => setObjetivo(objetivo)}
-                    items={[
-                        { label: "Hipertrofia", value: "Hipertrofia" },
-                        { label: "Definição Muscular", value: "Definição Muscular" },
-                        { label: "Emagrecimento", value: "Emagrecimento" },
-                    ]}
-                style={pickerSelectStyles}
-                />
-            </View>
-            
+        <ScrollView style={styles.scrollView}>
+            <View style={styles.background}>
+                <View style={styles.container}>
+                    <Image 
+                        style={styles.topImage}
+                        source={require('../../assets/images/diet.png')}
+                    />
+                    <Text style={styles.select}>
+                        {tipofisico ?
+                        `Tipo físico: ${tipofisico}` :
+                            "Selecione seu tipo físico:"
+                        }
+                    </Text>
+                    <View style={styles.selector}>
+                        <RNPickerSelect
+                            onValueChange={(tipofisico) => setTipoFisico(tipofisico)}
+                            items={[
+                                { label: "Endomorfo", value: "Endomorfo" },
+                                { label: "Mesomorfo", value: "Mesomorfo" },
+                                { label: "Ectomorfo", value: "Ectomorfo" },
+                            ]}
+                            style={pickerSelectStyles}
+                        />
+                    </View>
+                    <Text
+                        style={styles.select}
+                    >
+                        {objetivo ?
+                        `Objetivo: ${objetivo}` :
+                            "Selecione seu objetivo:"
+                        }
+                    </Text>
+                    <View style={styles.selector}>
+                        <RNPickerSelect
+                            onValueChange={(objetivo) => setObjetivo(objetivo)}
+                            items={[
+                                { label: "Hipertrofia", value: "Hipertrofia" },
+                                { label: "Definição Muscular", value: "Definição Muscular" },
+                                { label: "Emagrecimento", value: "Emagrecimento" },
+                            ]}
+                        style={pickerSelectStyles}
+                        />
+                    </View>
+                    
 
-            <Text
-                style={styles.select}
-            >
-                {restricoes ?
-                `Restrições Alimentares: ${restricoes}` :
-                    "Selecione suas restrições alimentares:"
-                }
-            </Text>
-            <View style={styles.selector}>
-                <RNPickerSelect
-                    onValueChange={(restricoes) => setRestricoes(restricoes)}
-                    items={[
-                        { label: "Nenhum", value: "Nenhum" },
-                        { label: "Lactose", value: "Lactose" },
-                        { label: "Amendoim", value: "Amendoim" },
-                        { label: "Glúten", value: "Glúten" },
-                        { label: "Crustáceos", value: "Crustáceos" },
-                        { label: "Soja", value: "Soja" },
-                        { label: "Proteína Leite", value: "Proteína Leite" },
-                    ]}
-                    style={pickerSelectStyles}
-                />
+                    <Text
+                        style={styles.select}
+                    >
+                        {restricoes ?
+                        `Restrições Alimentares: ${restricoes}` :
+                            "Selecione suas restrições alimentares:"
+                        }
+                    </Text>
+                    <View style={styles.selector}>
+                        <RNPickerSelect
+                            onValueChange={(restricoes) => setRestricoes(restricoes)}
+                            items={[
+                                { label: "Nenhum", value: "Nenhum" },
+                                { label: "Lactose", value: "Lactose" },
+                                { label: "Amendoim", value: "Amendoim" },
+                                { label: "Glúten", value: "Glúten" },
+                                { label: "Crustáceos", value: "Crustáceos" },
+                                { label: "Soja", value: "Soja" },
+                                { label: "Proteína Leite", value: "Proteína Leite" },
+                            ]}
+                            style={pickerSelectStyles}
+                        />
+                    </View>
+                    <TouchableOpacity style={styles.button} onPress ={()=> handleSubmit()}>
+                        <Text style={styles.text}>Finalizar</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Dietas1')}>
+                        <Text style={styles.text}>Acessar Dietas</Text>
+                    </TouchableOpacity>
+                </View>
             </View>
-            <TouchableOpacity style={styles.button} onPress ={()=> handleSubmit()}>
-                <Text style={styles.text}>Finalizar</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Dietas1')}>
-                <Text style={styles.text}>Acessar Dietas</Text>
-            </TouchableOpacity>
-        </View>
         </ScrollView>
     );
 }
@@ -150,7 +152,11 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: '#5a58d4',
         alignItems: 'center',
-        paddingTop: 90
+        paddingTop: 90,
+        height: 900
+    },
+    scrollView: {
+        backgroundColor: '#5a58d4',
     },
     topImage: {
         resizeMode: 'contain',

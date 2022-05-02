@@ -10,7 +10,7 @@ import Dietas1 from './pages/Dietas1/index';
 import Treinos from './pages/Treinos/index'
 import Metas from './pages/Metas/index'
 import Perfil from './pages/Perfil/index'
-import Saude from './pages/Saude/index'
+import Artigos from './pages/Artigos/index'
 import RecuperarSenha from './pages/RecuperarSenha/index';
 import RecuperarSenha2 from './pages/RecuperarSenha2/index';
 import Exercicios from './pages/Exercicios/index';
@@ -42,7 +42,7 @@ const App = () => {
           <Stack.Screen name="Treinos" component={Treinos} options={{headerShown: false}}/>
           <Stack.Screen name="Metas" component={Metas} options={{headerShown: false}}/>
           <Stack.Screen name="Perfil" component={Perfil} options={{headerShown: false}}/>
-          <Stack.Screen name="Saude" component={Saude} options={{headerShown: false}}/>
+          <Stack.Screen name="Saude" component={Artigos} options={{headerShown: false}}/>
           <Stack.Screen name="Exercicios" component={Exercicios} options={{headerShown: false}}/>
           <Stack.Screen name="TreinoA" component={TreinoA} options={{headerShown: false}}/>
           <Stack.Screen name="TreinoB" component={TreinoB} options={{headerShown: false}}/>

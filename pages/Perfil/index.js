@@ -12,20 +12,41 @@ function Perfil() {
             <View style={styles.container}>
                 <ProfilePic/>
             </View>
-            <View style={styles.profileInfo}>
-                <Text style={styles.title}>PERFIL</Text>
-                <Text style={styles.rawInfo}>Nome: {user.name} {user.surename}</Text>
-                <Text style={styles.rawInfo}>Altura: {user.altura} M</Text>
-                <Text style={styles.rawInfo}>Tipo Fisico: {user.tipoFisico}</Text>
-                <Text style={styles.rawInfo}>Idade: {user.idade} Anos</Text>
-                <Text style={styles.rawInfo}>Complicações de Saude: A FAZER</Text>
-                <Text style={styles.rawInfo}>Peso: {user.peso} Kg</Text>
-            </View>
-            <View style={styles.personalInfo}>
-                <Text style={styles.title}>DADOS PESSOAIS</Text>
-                <Text style={styles.rawInfo}>e-mail: {user.email}</Text>
-            </View>
             
+            <View style={styles.box}>
+                <Text style={styles.section}>Nome:</Text>
+                <Text style={styles.input}>{user.name} {user.surename}</Text>
+            </View>
+            <View style={styles.box}>
+                <Text style={styles.section}>Altura:</Text>
+                <Text style={styles.input}>{user.altura}</Text>
+            </View>
+            <View style={styles.box}>
+                <Text style={styles.section}>Tipo físico:</Text>
+                <Text style={styles.input}>{user.tipoFisico}</Text>
+            </View>
+            <View style={styles.box}>
+                <Text style={styles.section}>Idade:</Text>
+                <Text style={styles.input}>{user.idade}</Text>
+            </View>
+            <View style={styles.box}>
+                <Text style={styles.section}>Altura:</Text>
+                <Text style={styles.input}>{user.altura}</Text>
+            </View>
+            <View style={styles.box}>
+                <Text style={styles.section}>Complicações de saúde:</Text>
+            </View>
+            <View style={styles.box}>
+                <Text style={styles.section}>Peso:</Text>
+                <Text style={styles.input}>{user.peso}</Text>
+            </View>
+            <View style={styles.box}>
+                <Text style={styles.section}>Dados pessoais:</Text>
+            </View>
+            <View style={styles.box}>
+                <Text style={styles.section}>E-mail:</Text>
+                <Text style={styles.input}>{user.email}</Text>
+            </View>
         </KeyboardAvoidingView>
     )
 }
@@ -38,32 +59,34 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         marginLeft: 20,
+        marginBottom: 100,
+        marginTop: 50,
         justifyContent: 'center',
         alignItems: 'center',
         width: '90%'
     },
-    rawInfo: {
-        color: '#fff',
-        marginTop: 10,
-        fontSize: 20,
-    },
-    profileInfo: {
-        marginTop: 10,
-        marginBottom: 100,
-        marginLeft: 20,
+    box: {
         flex: 1,
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+        marginTop: -100
     },
-    personalInfo: {
-        marginTop: 10,
-        marginBottom: 20,
-        marginLeft: 20,
-        flex: 1,
-    },
-    title: {
+    input: {
+        borderWidth: 1,
+        borderColor: 'rgb(90, 69, 161)',
+        borderRadius: 4,
+        borderRadius: 9,
+        paddingVertical: 12,
+        paddingHorizontal: 10,
+        height: 40,
         color: '#fff',
-        fontSize: 22,
-        fontWeight: '500',
-    }
+        fontSize: 16,
+        width: '50%'
+    },
+    section: {
+        color: '#fff',
+        fontSize: 20
+    },
 });
 
 export default Perfil;
