@@ -12,7 +12,7 @@ function Signin({navigation}) {
 
     async function sendForm()
     {
-        let response = await fetch('http://192.168.0.91:3000/login',{
+        let response = await fetch('http://172.20.10.6:3000/login',{
             method: 'POST',
             headers: {
                 Accept: 'application/json',

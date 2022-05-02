@@ -38,7 +38,7 @@ export default function Dietas ({navigation}) {
     }
 
     const getData = async () => {
-        let response = await fetch('http://192.168.0.91:3000/getDieta',{
+        let response = await fetch('http://172.20.10.6:3000/getDieta',{
             method: 'POST',
             headers: {
                 Accept: 'application/json',
@@ -64,7 +64,7 @@ export default function Dietas ({navigation}) {
     }
 
     return (
-        <ScrollView>
+        <ScrollView style={styles.scroll}>
         <View style={styles.container}>
             <Image 
                 style={styles.topImage}
@@ -143,6 +143,9 @@ export default function Dietas ({navigation}) {
 }
 
 const styles = StyleSheet.create({
+    scroll: {
+        backgroundColor: '#5a58d4',
+    },
     container: {
         flex: 1,
         backgroundColor: '#5a58d4',

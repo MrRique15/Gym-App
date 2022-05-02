@@ -40,7 +40,7 @@ export default function TreinoA () {
     }
 
     return (
-        <ScrollView>
+        <ScrollView style={styles.scroll}>
             <View style={styles.container}>
                 <Image 
                     style={styles.topImage}
@@ -104,6 +104,9 @@ export default function TreinoA () {
 }
 
 const styles = StyleSheet.create({
+    scroll: {
+        backgroundColor: 'rgb(90, 88, 212)',
+    },
     container: {
         flex: 1,
         backgroundColor: '#5a58d4',

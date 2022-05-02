@@ -1,8 +1,9 @@
 import React from 'react';
-import { StyleSheet, View, Image, Text, TouchableOpacity, TextInput, CheckBox} from 'react-native';
+import { StyleSheet, View, Image, Text, TouchableOpacity, TextInput, CheckBox, ScrollView} from 'react-native';
 
 export default function Treinos({navigation}){
     return(
+        <ScrollView style={styles.scroll}>
         <View style={styles.container}>
             <Image style={styles.imageLogo} source={require('../../assets/images/gym.png')}></Image>
             <View style={styles.navbar}>
@@ -20,23 +21,30 @@ export default function Treinos({navigation}){
             <TextInput
                 style={styles.treinos}
                 placeholderTextColor="#fff"
+                multiline={true}
                 placeholder="TREINO 1 CADASTRADO APARECERÁ AQUI"
             />
             <TextInput
                 style={styles.treinos}
                 placeholderTextColor="#fff"
+                multiline={true}
                 placeholder="TREINO 2 CADASTRADO APARECERÁ AQUI"
             />
             <TextInput
                 style={styles.treinos}
                 placeholderTextColor="#fff"
+                multiline={true}
                 placeholder="TREINO 3 CADASTRADO APARECERÁ AQUI"
             />
         </View>
+        </ScrollView>
     );
 }
 
 const styles = StyleSheet.create({
+    scroll: {
+        backgroundColor: 'rgb(90, 88, 212)',
+    },
     container: {
         flex: 1,
         alignItems: 'center',

@@ -8,6 +8,7 @@ import {
     TextSubmit,
     Text
 } from './styles';
+import {KeyboardAvoidingView, StyleSheet} from 'react-native';
 
 function Cadastro({navigation}) {
     const [email, setEmail] = useState('');
@@ -16,7 +17,7 @@ function Cadastro({navigation}) {
 
     async function sendForm()
     {
-        let response = await fetch('http://192.168.0.91:3000/cadastro',{
+        let response = await fetch('http://172.20.10.6:3000/cadastro',{
             method: 'POST',
             headers: {
                 Accept: 'application/json',
@@ -41,7 +42,10 @@ function Cadastro({navigation}) {
     }
     
     return (
-        <KeyBoardView>
+        <KeyboardAvoidingView 
+            behavior="padding"
+            style={styles.signin}
+        >
             <Container>
                 <Title>Cadastro</Title>
 
@@ -67,9 +71,16 @@ function Cadastro({navigation}) {
                 </ButtonSubmit>
                 <Text>Ao cadastrar você concorda com os termos de serviço e políticas de privacidade</Text>
             </Container>
-        </KeyBoardView>
-        
+        </KeyboardAvoidingView>
     )
 }
 
+const styles = StyleSheet.create({
+    signin: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: 'rgb(90, 88, 212)',
+    },
+});
 export default Cadastro;

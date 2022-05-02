@@ -9,7 +9,7 @@ function IMC() {
   }
 
   return (
-    <ScrollView>
+    <ScrollView style={styles.scroll}>
       <View style={styles.container}>
         <View style={styles.image}>
           <Image
@@ -79,6 +79,9 @@ function IMC() {
 }
 
 const styles = StyleSheet.create({
+  scroll: {
+    backgroundColor: 'rgb(90, 88, 212)',
+  },
   container: {
     flex: 1,
     justifyContent: 'center',
