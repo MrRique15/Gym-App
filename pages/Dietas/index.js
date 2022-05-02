@@ -15,7 +15,7 @@ export default function Dietas ({navigation}) {
         user.tipoFisico = tipofisico;
         user.objetivo = objetivo;
         user.restricao = restricoes;
-        let response = await fetch('http://192.168.0.10:3000/saveDieta',{
+        let response = await fetch('http://192.168.0.91:3000/saveDieta',{
             method: 'POST',
             headers: {
                 Accept: 'application/json',
