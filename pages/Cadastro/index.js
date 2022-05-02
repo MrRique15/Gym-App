@@ -1,6 +1,5 @@
 import React, {useState,useEffect} from 'react';
 import { 
-    KeyBoardView, 
     Title, 
     Container, 
     Input, 
@@ -17,7 +16,7 @@ function Cadastro({navigation}) {
 
     async function sendForm()
     {
-        let response = await fetch('http://172.20.10.6:3000/cadastro',{
+        let response = await fetch('http://192.168.0.91:3000/cadastro',{
             method: 'POST',
             headers: {
                 Accept: 'application/json',

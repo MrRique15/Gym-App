@@ -92,9 +92,9 @@ app.post('/cadastro', async (req, res) => {
                 });
                 const treino = await Treino.create({
                     email: req.body.email,
-                    treinoOne: {name: "Nenhum", exercicios: []},
-                    treinoTwo: {name: "Nenhum", exercicios: []},
-                    treinoThree: {name: "Nenhum", exercicios: []},
+                    treinoOne: 'Nenhum',
+                    treinoTwo: 'Nenhum',
+                    treinoThree: 'Nenhum'
                 });
                 res.send(JSON.stringify({error:'cadastrar',message:'Cadastro realizado com sucesso!'}));
             }else{
@@ -116,10 +116,11 @@ app.post('/login', async (req, res) => {
         }else if(response.password != req.body.password){
             res.send(JSON.stringify({error:'error',message:'Email ou Senha incorretos!'}));
         }else if(response.email == req.body.email && response.password == req.body.password){
+            let treinos = await Treino.findOne({email:req.body.email});
             if(response.name == '' || response.surename == ''){
-                res.send(JSON.stringify({error:'incomplete',message:'Finalize seu cadastro!',name:response.name,surename:response.surename,email:response.email,age:response.age,height:response.height,weight:response.weight,imageURL:response.imageURL,tipoFisico:response.tipoFisico}));
+                res.send(JSON.stringify({error:'incomplete',message:'Finalize seu cadastro!',name:response.name,surename:response.surename,email:response.email,age:response.age,height:response.height,weight:response.weight,imageURL:response.imageURL,tipoFisico:response.tipoFisico,treinoOne:treinos.treinoOne,treinoTwo:treinos.treinoTwo,treinoThree:treinos.treinoThree}));
             }else{
-                res.send(JSON.stringify({error:'logar',message:'Logado com sucesso!',name:response.name,surename:response.surename,email:response.email,age:response.age,height:response.height,weight:response.weight,imageURL:response.imageURL,tipoFisico:response.tipoFisico}));
+                res.send(JSON.stringify({error:'logar',message:'Logado com sucesso!',name:response.name,surename:response.surename,email:response.email,age:response.age,height:response.height,weight:response.weight,imageURL:response.imageURL,tipoFisico:response.tipoFisico,treinoOne:treinos.treinoOne,treinoTwo:treinos.treinoTwo,treinoThree:treinos.treinoThree}));
             }
         }
     }
@@ -282,13 +283,18 @@ app.post('/getDieta', async (req, res) => {
     }
 });
 
-app.post('/getTreino', async (req, res) => {
-    let response = await Treino.findOne({email:req.body.email});
-    if(response == null){
-        res.send(JSON.stringify({error:'error',message:'Nenhum treino cadastrado!'}));
-    }else{
-        res.send(JSON.stringify({error:'treino',message:'Treino encontrado!',treinoOne:response.treinoOne,treinoTwo:response.treinoTwo,treinoThree:response.treinoThree}));
-    }
+app.post('/saveTreino', async (req, res) => {
+    Treino.updateOne({email:req.body.email},{
+        treinoOne: req.body.treino01,
+        treinoTwo: req.body.treino02,
+        treinoThree: req.body.treino03,
+    }, function(err, result){
+        if(err){
+            res.send(JSON.stringify({error:'error',message:'Erro ao atualizar treinos!'}));
+        }else{
+            res.send(JSON.stringify({error:'treino',message:'Treinos atualizados com Sucesso!'}));
+        }
+    });
 });
 
 let port = process.env.PORT || 3000;

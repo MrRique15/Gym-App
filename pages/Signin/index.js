@@ -12,7 +12,7 @@ function Signin({navigation}) {
 
     async function sendForm()
     {
-        let response = await fetch('http://172.20.10.6:3000/login',{
+        let response = await fetch('http://192.168.0.91:3000/login',{
             method: 'POST',
             headers: {
                 Accept: 'application/json',
@@ -35,6 +35,9 @@ function Signin({navigation}) {
                 peso: json.weight,
                 idade: json.age,
                 tipoFisico: json.tipoFisico,
+                treino01: json.treinoOne,
+                treino02: json.treinoTwo,
+                treino03: json.treinoThree,
             });
             navigation.navigate('Menu');   
         }else if(json.error == 'incomplete'){
@@ -48,6 +51,9 @@ function Signin({navigation}) {
                 peso: json.weight,
                 idade: json.age,
                 tipoFisico: json.tipoFisico,
+                treino01: json.treinoOne,
+                treino02: json.treinoTwo,
+                treino03: json.treinoThree,
             });
             setTimeout(() => {
                 navigation.navigate('CompletarCadastro');

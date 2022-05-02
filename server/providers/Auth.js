@@ -14,6 +14,9 @@ export const AuthProvider = (props) => {
         idade: 0,
         objetivo: 'Nenhum',
         restricao: 'Nenhuma',
+        treino01: 'Nenhum',
+        treino02: 'Nenhum',
+        treino03: 'Nenhum',
     });
 
     return(

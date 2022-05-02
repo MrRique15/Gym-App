@@ -6,15 +6,15 @@ const TreinoSchema = new mongoose.Schema({
         require: true
     },
     treinoOne: {
-        type: Object,
+        type: String,
         require: true
     },
     treinoTwo: {
-        type: Object,
+        type: String,
         require: true
     },
     treinoThree: {
-        type: Object,
+        type: String,
         require: true
     },
 }, {
