@@ -30,15 +30,15 @@ function Perfil() {
                 <Text style={styles.input}>{user.idade}</Text>
             </View>
             <View style={styles.box}>
-                <Text style={styles.section}>Altura:</Text>
-                <Text style={styles.input}>{user.altura}</Text>
-            </View>
-            <View style={styles.box}>
-                <Text style={styles.section}>Complicações de saúde:</Text>
-            </View>
-            <View style={styles.box}>
                 <Text style={styles.section}>Peso:</Text>
                 <Text style={styles.input}>{user.peso}</Text>
+            </View>
+            <View style={styles.box}>
+                <Text style={styles.section}>Informações de saúde:</Text>
+            </View>
+            <View style={styles.box}>
+                <Text style={styles.section}>Restrição Alim.:</Text>
+                <Text style={styles.input}>{user.restricao}</Text>
             </View>
             <View style={styles.box}>
                 <Text style={styles.section}>Dados pessoais:</Text>
@@ -76,7 +76,7 @@ const styles = StyleSheet.create({
         borderColor: 'rgb(90, 69, 161)',
         borderRadius: 4,
         borderRadius: 9,
-        paddingVertical: 12,
+        paddingVertical: 8,
         paddingHorizontal: 10,
         height: 40,
         color: '#fff',

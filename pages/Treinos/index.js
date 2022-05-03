@@ -12,18 +12,16 @@ import {
 import { useAuth } from '../../server/providers/Auth';
 
 export default function Treinos({navigation}){
-    const { user, setUser } = useAuth();
+    const { user } = useAuth();
 
     const [treino01, setTreino01] = useState(user.treino01);
     const [treino02, setTreino02] = useState(user.treino02);
     const [treino03, setTreino03] = useState(user.treino03);
 
     const handleSubmit = async () => {
-        setUser({
-            treino01: treino01,
-            treino02: treino02,
-            treino03: treino03,
-        });
+        user.treino01 = treino01;
+        user.treino02 = treino02;
+        user.treino03 = treino03;
         let response = await fetch('http://192.168.0.91:3000/saveTreino',{
             method: 'POST',
             headers: {

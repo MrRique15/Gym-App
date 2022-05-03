@@ -8,7 +8,7 @@ export default function Dietas ({navigation}) {
     const [ objetivo, setObjetivo ] = useState("");
     const [ restricoes, setRestricoes ] = useState("");
 
-    const {user, setUser} = useAuth();
+    const {user} = useAuth();
 
     async function handleSubmit()
     {
