@@ -13,7 +13,7 @@ A mobile application for study purposes. The app is being developed in React Nat
 3) Abrir painel desenvolvedor do EXPO:
   <p>http://localhost:19002/</p>
 <br/>
-4) Coletar apenas o endereço IP constante no painel desenvolvedor.
+4) Coletar apenas o endereço IP, ignorando a porta, constante no painel desenvolvedor.
 <br/>
 <br/>
 5) Alterar o endereço IP em todas as ocorrências de funções do tipo fetch.
