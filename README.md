@@ -30,4 +30,4 @@ A mobile application for study purposes. The app is being developed in React Nat
 6) Reiniciar a aplicação, pois agora as conexões backend estarão em funcionamento.
 <br/>
 <br/>
-OBS: Ao criar uma conta, um e-mail deve ser enviado contendo o código de autenticação, porém por ser uma API gratuita, alguns problemas podem ocorrer, como a mensagem cair na caixa de spam, ou ser deletada pelo próprio e-mail, porém esse código permanece salvo no banco de dados para cada usuário, basta checar no banco de dados para utilizar ao criar o cadastro, caso o e-mail não chegue de nenhuma forma. (Os emails do @uem.com funcionaram, aparecendo o codigo na caixa de spam.
+OBS: Ao criar uma conta, um e-mail deve ser enviado contendo o código de autenticação, porém por ser uma API gratuita, alguns problemas podem ocorrer, como a mensagem cair na caixa de spam, ou ser deletada pelo próprio e-mail, porém esse código permanece salvo no banco de dados para cada usuário, basta checar no banco de dados para utilizar ao criar o cadastro, caso o e-mail não chegue de nenhuma forma. (Os emails do @uem.com funcionaram, aparecendo o codigo na caixa de spam)
