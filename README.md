@@ -2,29 +2,29 @@
 
 A mobile application for study purposes. The app is being developed in React Native.
 <br/>
-Para o funcionamento da aplicação, os seguintes passos devem ser seguidos:
+<p>Para o funcionamento da aplicação, os seguintes passos devem ser seguidos:</p>
 <br/>
 1) Instalar as dependências para o projeto:
-Comando -> yarn install
+  <p>Comando -> yarn install</p>
 <br/>
-2) Iniciar a aplicação: 
-Comando -> yarn start
+2) Iniciar a aplicação:
+  <p>Comando -> yarn start</p>
 <br/>
 3) Abrir painel desenvolvedor do EXPO:
-http://localhost:19002/
+  <p>http://localhost:19002/</p>
 <br/>
 4) Coletar apenas o endereço IP constante no painel desenvolvedor.
 <br/>
 5) Alterar o endereço IP em todas as ocorrências de funções do tipo fetch.
-Arquivos à serem alterados:
-- Components -> profilePic.js
-- Cadastro -> index.js
-- CompletarCadastro -> index.js
-- Perfil -> index.js
-- RecuperarSenha -> index.js
-- RecuperarSenha2 -> index.js
-- Signin -> index.js
-- Treinos -> index.js
+<p>Arquivos à serem alterados:</p>
+- Components -> profilePic.js<br/>
+- Cadastro -> index.js<br/>
+- CompletarCadastro -> index.js<br/>
+- Perfil -> index.js<br/>
+- RecuperarSenha -> index.js<br/>
+- RecuperarSenha2 -> index.js<br/>
+- Signin -> index.js<br/>
+- Treinos -> index.js<br/>
 <br/>
 6) Reiniciar a aplicação, pois agora as conexões backend estarão em funcionamento.
 <br/>
