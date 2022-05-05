@@ -15,6 +15,7 @@ A mobile application for study purposes. The app is being developed in React Nat
 <br/>
 4) Coletar apenas o endereço IP constante no painel desenvolvedor.
 <br/>
+<br/>
 5) Alterar o endereço IP em todas as ocorrências de funções do tipo fetch.
 <p>Arquivos à serem alterados:</p>
 - Components -> profilePic.js<br/>
