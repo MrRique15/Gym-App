@@ -9,7 +9,7 @@ function Header() {
             <Image 
                 source={Logo}
                 style={{
-                    resizeMode: "contain", //para a imagem ficar inteira
+                    resizeMode: "contain",
                     height: 200,
                     width: 100     
                 }}

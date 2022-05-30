@@ -14,7 +14,7 @@ function CompletarCadastro({navigation}) {
 
     async function sendForm()
     {
-        let response = await fetch('http://192.168.0.91:3000/completarcadastro',{
+        let response = await fetch('http://172.20.10.6:3000/completarcadastro',{
             method: 'POST',
             headers: {
                 Accept: 'application/json',
@@ -54,7 +54,6 @@ function CompletarCadastro({navigation}) {
     
     return (
         <KeyboardAvoidingView 
-            behavior='padding'
             style={styles.completarCadastro}
         >
             <View style={styles.container}>

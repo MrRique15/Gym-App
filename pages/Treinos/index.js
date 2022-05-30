@@ -22,7 +22,7 @@ export default function Treinos({navigation}){
         user.treino01 = treino01;
         user.treino02 = treino02;
         user.treino03 = treino03;
-        let response = await fetch('http://192.168.0.91:3000/saveTreino',{
+        let response = await fetch('http://172.20.10.6:3000/saveTreino',{
             method: 'POST',
             headers: {
                 Accept: 'application/json',

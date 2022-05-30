@@ -20,7 +20,7 @@ export default function ImagePickerExample() {
     if (!result.cancelled) {
       setImage(result.uri);
       user.imageURL = result.uri;
-      let response = await fetch('http://192.168.0.91:3000/setImageBD',{
+      let response = await fetch('http://172.20.10.6:3000/setImageBD',{
         method: 'POST',
         headers: {
           Accept: 'application/json',
@@ -38,7 +38,7 @@ export default function ImagePickerExample() {
     return (
       <View style= {styles.imageDefault}>
         {user.imageURL && <Image source={{ uri: user.imageURL }} style={styles.img} />}
-        <Button style={styles.button} title="Alterar" color={'white'} onPress={pickImage} />
+        <Button style={styles.button} title="Alterar" onPress={pickImage} />
       </View>
     );
   }else if (!image) {
@@ -48,14 +48,14 @@ export default function ImagePickerExample() {
           source={Logo}
           style={styles.logoDefault}
         />
-        <Button style={styles.button} title="Clique para adicionar foto" color={'white'} onPress={pickImage} />
+        <Button style={styles.button} title="Clique para adicionar foto" onPress={pickImage} />
       </View>
     );
   }else{
     return (
       <View style= {styles.imageDefault}>
         {image && <Image source={{ uri: image }} style={styles.img} />}
-        <Button style={styles.button} title="Alterar" color={'white'} onPress={pickImage} />
+        <Button style={styles.button} title="Alterar" onPress={pickImage} />
       </View>
     );
   }
@@ -68,7 +68,6 @@ const styles = StyleSheet.create({
       alignItems: 'center',
     },
     button: {
-      
     },  
     img: {
       width: 60, 
