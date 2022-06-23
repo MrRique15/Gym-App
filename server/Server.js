@@ -28,7 +28,7 @@ process.on('unhandledRejection', (reason, promise) => {
 //-------------------------------------------------------------------------------------------------------
 
 // Connect to MongoDB -----------------------------------------------------------------------------------
-const mongoUri = "mongodb+srv://root:admin@gymapp.hj2zp.mongodb.net/gymapp?retryWrites=true&w=majority";
+const mongoUri = "sua chave mongoDB";
 mongoose.connect(mongoUri, {
     useNewUrlParser: true,
 });
@@ -43,13 +43,13 @@ mongoose.connection.on('error', (err) => {
 //Email Sender Connection--------------------------------------------------------------------------------
 const transporter = nodemailer.createTransport({
     host: 'smtp.elasticemail.com',
-    port: 2525,
+    port: 8080,
     auth: {
-        user: 'ra115408@uem.br',
-        pass: 'A611380C1B13C823A55E88645DCDCFDA03C6'
+        user: 'seuemail@seuemail.com',
+        pass: 'SMTP Password'
     }
 });
-const emailFrom = {email: 'ra115408@uem.br'};
+const emailFrom = {email: 'seuemail@seuemail.com'};
 //-------------------------------------------------------------------------------------------------------
 
 app.post('/cadastro', async (req, res) => {
